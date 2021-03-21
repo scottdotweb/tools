@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Renaming script generator</title>
+<style>
+	body {
+		margin: 0;
+	}
+
+	form {
+		margin: 25px;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: auto;
+		gap: 25px;
+		grid-template-areas:
+			"left center right"
+			"options ... ...";
+	}
+
+	#old-names {
+		grid-area: left;
+	}
+
+	#new-names {
+		grid-area: center;
+	}
+
+	#output {
+		grid-area: right;
+	}
+
+	#options {
+		grid-area: options;
+	}
+
+	* {
+		font-family: Arial, sans-serif;
+	}
+
+	textarea {
+		font-family: Consolas, Courier New, monospace;
+		height: 250px;
+	}
+
+	button {
+		height: 25px;
+		border-radius: 10px;
+	}
+
+	fieldset {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	legend {
+		font-weight: bold;
+		padding-bottom: 0.5em;
+	}
+
+	textarea {
+		width: 100%;
+		border: 0;
+		box-shadow: 5px 5px 5px -5px #666;
+		background: #ddd;
+	}
+
+	option, label {
+		font-size: 13px;
+	}
+
+	input[type="reset"] {
+		display: block;
+		clear: both;
+		margin-top: 1em;
+	}
+</style>
+</head>
+<form>
+	<fieldset id=old-names>
+		<legend>Old names</legend>
+		<textarea></textarea>
+	</fieldset>
+	<fieldset id=new-names>
+		<legend>New names</legend>
+		<textarea></textarea>
+	</fieldset>
+	<fieldset id=output>
+		<legend>Commands</legend>
+		<textarea readonly></textarea>
+	</fieldset>
+
+	<div id=options>
+		<select>
+			<option value=p>PowerShell</option>
+			<option value=c>Command prompt</option>
+			<option value=b>Bash</option>
+		</select>
+
+		<input type=checkbox id=append> <label for=append>Append new name to old</label>
+
+		<input type=reset />
+	</div>
+</form>
+<script>
+	function generate() {
+		const oldNames = document.querySelector('#old-names textarea').value.split(/\n/)
+		const newNames = document.querySelector('#new-names textarea').value.split(/\n/)
+
+		if (oldNames[0] === '' || newNames[0] === '') return
+
+		const processItems = oldNames.slice(0, Math.min(oldNames.length, newNames.length))
+
+		let output = []
+
+		const append = document.getElementById('append').checked
+
+		oldNames.slice(0, Math.min(oldNames.length, newNames.length)).forEach((oldName, index) => {
+			let target = newNames[index]
+
+			if (target === '') return
+
+			if (oldName.match(/.*?\.\w+$/)) {
+				const nameParts = /(.*?)(\.\w+)$/.exec(oldName)
+
+				if (append) target = `${nameParts[1]} - ${target}`
+
+				target += nameParts[2]
+			} else {
+				if (append) target = `${oldName} - ${target}`
+			}
+
+			output.push(makeCommand(oldName, target))
+		})
+
+		document.querySelector('#output textarea').value = output.join('\n')
+	}
+
+	function makeCommand(oldName, newName) {
+		const commands = {
+			p: 'rename-item',
+			c: 'ren',
+			b: 'mv'
+		}
+
+		const dialectSelector = document.querySelector('#options select')
+
+		const dialect = dialectSelector[dialectSelector.selectedIndex].value
+
+		return `${commands[dialect]} "${oldName}" "${newName}"`
+	}
+
+	['#old-names textarea', '#new-names textarea', '#options select', '#append'].forEach(input => {
+		document.querySelector(input).addEventListener('input', e => generate())
+	});
+</script>

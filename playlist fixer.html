@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Playlist fixer</title>
+<style>
+	*, ::before, ::after {
+		box-sizing: border-box;
+	}
+
+	body {
+		margin: 10vw;
+	}
+
+	h1, button {
+		font-family: Arial, sans-serif;
+	}
+
+	input, #browse span {
+		font-family: Consolas, Courier New, monospace;
+		font-size: 0.75rem;
+	}
+
+	main {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	#inputControls, #download {
+		width: 50%;
+		vertical-align: top;
+	}
+
+	#dropZone, #downloadButton {
+		width: 250px;
+		height: 250px;
+		border: 10px dashed #666;
+		border-radius: 20px;
+		background: #ddd;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#dropZoneLabel, #downloadButtonLabel {
+		margin: 0;
+		font-size: 75px;
+		font-weight: bold;
+		color: #000;
+	}
+
+	#browse, #downloadFilename {
+		margin-top: 25px;
+	}
+
+	#download {
+		display: none;
+	}
+
+	#download input {
+		border: 0;
+		background: #eee;
+		width: 248px;
+		text-align: center;
+	}
+
+	/* Thanks wtfforms.com */
+	.file {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		height: 2.5rem;
+	}
+
+	.file input {
+		min-width: 14rem;
+		margin: 0;
+		filter: alpha(opacity=0);
+		opacity: 0;
+	}
+
+	.browseLabel, .browseLabelActive {
+		position: absolute;
+		right: 0;
+		left: 0;
+		z-index: 2;
+		line-height: 1.5;
+		color: #555;
+		background-color: #fff;
+		border: .075rem solid #ddd;
+		border-radius: .25rem;
+		user-select: none;
+	}
+
+	.browseLabel::after {
+	    content: "Choose file...";
+	}
+</style>
+</head>
+<header>
+<h1>Playlist fixer</h1>
+</header>
+<main>
+	<div id=inputControls>
+		<div id=dropZone>
+			<div id=dropZoneLabel>&#x1F4E5;&#xFE0E;</div>
+		</div>
+
+		<div id=browse>
+			<label class=file>
+				<input type=file accept='.xspf'>
+				<span class=browseLabel></span>
+			</label>
+		</div>
+	</div>
+	<div id=download>
+		<button id=downloadButton>
+			<span id="downloadButtonLabel">&#x1F4C4;</span>
+		</button>
+
+		<div id=downloadFilename>
+			<input type=text id=filename size=30 value='' />
+		</div>
+	</div>
+</main>
+
+<script>
+	function stopDefaults (e) {
+		e.stopPropagation()
+		e.preventDefault()
+	}
+
+	async function inputDrop (e) {
+		stopDefaults(e)
+
+		const inputFile = e.dataTransfer.files[0]
+
+		setOutputFileName(inputFile.name)
+
+		generate(await inputFile.text())
+	}
+
+	function setOutputFileName (fileName) {
+		document.querySelector('#filename').value = fileName
+	}
+
+	async function browseToFile () {
+		const fileSelector = document.querySelector('#browse input')
+		const inputFile = fileSelector.files[0]
+
+		setOutputFileName(inputFile.name)
+
+		const oldStyle = document.querySelector('style[title=browseLabelActive]')
+
+		if (oldStyle) {
+			oldStyle.disabled = true
+			oldStyle.parentNode.removeChild(oldStyle)
+		}
+
+		const newStyle = document.createElement('style')
+		newStyle.type = 'text/css'
+		newStyle.title = 'browseLabelActive'
+
+		newStyle.appendChild(
+			document.createTextNode(
+				`.browseLabelActive::after { content: "${inputFile.name}"; }`
+			)
+		)
+
+		document.head.appendChild(newStyle)
+
+		document.querySelector('#browse span').setAttribute('class', 'browseLabelActive')
+
+		generate(await inputFile.text())
+	}
+
+	function generate (input) {
+		const inputLines = input.split(/\n/)
+
+		const junk = [
+			/<title>.*?<\/title>/,
+			/<duration>.*?<\/duration>/,
+			/<annotation>.*?<\/annotation>/,
+			/<\/?extension.*?>/,
+			/<vlc.*?<\/vlc:id>/,
+			/<vlc:item.*?>/,
+		]
+
+		let outputLines = []
+
+		inputLines.forEach(line => {
+			let outLine = line
+
+			junk.forEach(re => outLine = outLine.replace(re, ''))
+
+			outLine = outLine.replace(
+				/file:\/\/(?:.*?\/)+(.*?)(<\/location>)/,
+				'$1$2'
+			)
+
+			outLine.match(/\w/) && outputLines.push(outLine)
+		})
+
+		const output = document.createElement('textarea')
+		output.id = 'output'
+		output.style.display = 'none'
+
+		output.innerHTML = outputLines.join('\n')
+		document.body.appendChild(output)
+
+		document.querySelector('#dropZoneLabel').innerHTML = '&#x2714;'
+		document.querySelector('#download').style.display = 'block'
+
+	}
+
+	function download (e) {
+		stopDefaults(e)
+
+		const text = document.querySelector('#output').value
+
+		const a = document.createElement('a')
+		a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text))
+		a.setAttribute('download', document.querySelector('#filename').value)
+
+		a.style.display = 'none'
+		document.body.appendChild(a)
+		a.click()
+		document.body.removeChild(a)
+	}
+
+	document.querySelector('#browse input').addEventListener('change', browseToFile)
+	document.querySelector('#dropZone').addEventListener('dragenter', stopDefaults)
+	document.querySelector('#dropZone').addEventListener('dragover', stopDefaults)
+	document.querySelector('#dropZone').addEventListener('drop', inputDrop)
+	document.querySelector('#download').addEventListener('click', download)
+</script>
