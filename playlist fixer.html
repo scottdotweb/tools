@@ -200,12 +200,16 @@
 			outLine.match(/\w/) && outputLines.push(outLine)
 		})
 
-		const output = document.createElement('textarea')
-		output.id = 'output'
-		output.style.display = 'none'
+		let output = document.querySelector('#output')
+
+		if (!output) {
+			output = document.createElement('textarea')
+			output.id = 'output'
+			output.style.display = 'none'
+			document.body.appendChild(output)
+		}
 
 		output.innerHTML = outputLines.join('\n')
-		document.body.appendChild(output)
 
 		document.querySelector('#dropZoneLabel').innerHTML = '&#x2714;'
 		document.querySelector('#download').style.display = 'block'
