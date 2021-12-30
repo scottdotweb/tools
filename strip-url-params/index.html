@@ -1,17 +1,38 @@
 <!doctype html>
+
 <meta charset=UTF-8 />
-<title>Strip URL parameters</title>
+<meta name=viewport content="width=device-width, initial-scale=1.0" />
 <link rel=stylesheet href=css/strip-url-params.css />
 
-<h1>Strip URL parameters</h1>
+<title>Strip URL parameters</title>
 
-<input type=url size=100 id=url placeholder="Enter URL here" />
+<body>
 
-<div id=result></div>
+	<header>
+		<h1>Strip URL parameters</h1>
+	</header>
 
-<div>
-<button id=copyButton>Copy to clipboard 📋</button>
-<div id=copyLabel></div>
-</div>
+	<main>
+
+		<p>
+			Enter a URL and it&rsquo;ll be shown below with any parameters <span class=params>(<samp>?junk=1&amp;creepy-tracking-id=abcdef123456...</samp>)</span> removed.
+		</p>
+
+		<input type=url id=url placeholder="https://example.com/your-URL-here" />
+
+		<div id=resultContainer>
+			<p>
+				Your cleaned URL:
+			</p>
+
+			<div id=result></div>
+
+			<button id=copyButton>📋 Copy to clipboard</button>
+			<div id=copyLabel></div>
+		</div>
+
+	</main>
+
+</body>
 
 <script src=js/strip-url-params.js></script>

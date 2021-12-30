@@ -1,31 +1,113 @@
+@media screen and (max-width: 499px) {
+	:root {
+		--font-size: 1.75rem;
+		--h1-scale: 2;
+		--button-scale: 1.25;
+	}
+}
+
+@media screen and (min-width: 500px) {
+	:root {
+		--font-size: 1.25rem;
+		--h1-scale: 2.5;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	:root {
+		--font-size: 1rem;
+		--h1-scale: 3;
+	}
+}
+
 body {
-	margin: 1vw;
+	margin: 0;
+	font-size: var(--font-size);
 }
 
 * {
 	font-family: sans-serif;
 }
 
-#result {
-	margin: 1em 0;
-	background-color: #efefef;
-	height: 1em;
+h1 {
+	margin: 0;
+	padding: 0.5rem;
+	border-bottom: 1px solid #999;
+	font-size: calc(var(--font-size) * var(--h1-scale));
+	line-height: 0.8em;
 }
 
-input, #result {
-	width: 50%;
-	font-family: monospace;
+samp, #url, #result {
+	font-family: Consolas, "Courier New", monospace;
+}
+
+.params {
+	white-space: nowrap;
+}
+
+samp {
+	display:  inline-block;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	padding: 0 0.5em;
+	border-radius: 0.5em;
+	font-size: 0.66em;
+	font-weight: bold;
+}
+
+main {
+	margin: 0.5rem;
+	width: calc(100% - 1rem);
+}
+
+p {
+	margin: 0.5em 0;
+}
+
+#url, #result {
+	font-size: 0.8em;
+}
+
+#url {
+	width: 100%;
+	padding: 0;
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 0.25em solid black;
+	border-left: 0;
+}
+
+#resultContainer {
+	display: none;
+	margin: 2em 0 0 0;
+}
+
+#result {
+	width: calc(100% - 1.5em);
+	margin-bottom: 0.5rem;
+	padding: 0.5em;
+	border: 0.25em dashed #88dd66;
+	border-radius: 0.25em;
+	background-color: #c0ffcc;
+	line-break: anywhere;
+	font-weight: bold;
 }
 
 #copyButton {
-	display: none;
+	display:  block;
+	margin: 2em auto 1em auto;
+	width: 12em;
+	padding: 0.25em;
+}
+
+#copyButton, #copyLabel {
 	font-weight: bold;
+	font-size: 1em;
 }
 
 #copyLabel {
 	display: inline-block;
-	margin: 0 0 0 0.5em;
+	margin: 0 0 0 0.5rem;
 	font-style: italic;
-	font-size: 0.9em;
 	color: #888;
 }

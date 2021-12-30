@@ -1,6 +1,6 @@
 function clean (e) {
 	const result = document.getElementById('result')
-	const copyButton = document.getElementById('copyButton')
+	const resultContainer = document.getElementById('resultContainer')
 
 	document.getElementById('copyLabel').innerText = ''
 
@@ -10,8 +10,8 @@ function clean (e) {
 
 	result.innerText = matches ? matches[1] : e.target.value
 
-	copyButton.style.display = result.innerText.length
-		? 'inline'
+	resultContainer.style.display = result.innerText.length
+		? 'block'
 		: 'none'
 }
 
@@ -20,7 +20,7 @@ function copyOutput () {
 		document.getElementById('result').innerText
 	)
 
-	document.getElementById('copyLabel').innerText = 'Copied.'
+	document.getElementById('copyLabel').innerText = 'Copied!'
 }
 
 document.getElementById('url').value = ''
