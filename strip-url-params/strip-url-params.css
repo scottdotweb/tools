@@ -1,0 +1,31 @@
+body {
+	margin: 1vw;
+}
+
+* {
+	font-family: sans-serif;
+}
+
+#result {
+	margin: 1em 0;
+	background-color: #efefef;
+	height: 1em;
+}
+
+input, #result {
+	width: 50%;
+	font-family: monospace;
+}
+
+#copyButton {
+	display: none;
+	font-weight: bold;
+}
+
+#copyLabel {
+	display: inline-block;
+	margin: 0 0 0 0.5em;
+	font-style: italic;
+	font-size: 0.9em;
+	color: #888;
+}
