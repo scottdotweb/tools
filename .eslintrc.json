@@ -16,7 +16,13 @@
 	],
 	"rules": {
 		"array-bracket-spacing": [ "error", "always" ],
-		"comma-dangle": [ "error", "always-multiline" ],
+		"comma-dangle": [ "error", {
+			"arrays": "always-multiline",
+			"objects": "always-multiline",
+			"imports": "never",
+			"exports": "never",
+			"functions": "never"
+		}],
 		"curly": [ "error", "multi" ],
 		"eqeqeq": [ "error", "smart" ],
 		"import/first": "off",
