@@ -1,0 +1,36 @@
+{
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"plugins": [
+	],
+	"overrides": [
+	],
+	"extends": [
+		"standard"
+	],
+	"rules": {
+		"array-bracket-spacing": [ "error", "always" ],
+		"comma-dangle": [ "error", "always-multiline" ],
+		"curly": [ "error", "multi" ],
+		"eqeqeq": [ "error", "smart" ],
+		"import/first": "off",
+		"indent": [ "error", "tab" ],
+		"key-spacing": ["error", { "align": "value" } ],
+		"no-console": "off",
+		"no-empty": "error",
+		"no-multi-spaces": [ "error", { "ignoreEOLComments": true, "exceptions": { "ImportDeclaration": true, "VariableDeclarator": true } } ],
+		"no-multiple-empty-lines": "off",
+		"no-tabs": "off",
+		"no-trailing-spaces": [ "error", { "ignoreComments": true } ],
+		"no-undef-init": "off",
+		"no-unneeded-ternary": "off",
+		"quotes": [ "error", "single", { "avoidEscape": true } ],
+		"space-in-parens": "off"
+	}
+}
