@@ -23,6 +23,21 @@ function copyOutput () {
 	document.getElementById('copyLabel').innerText = 'Copied!'
 }
 
+// --------------------------------------------------------------------------
+
 document.getElementById('url').value = ''
 document.getElementById('url').addEventListener('input', clean)
 document.getElementById('copyButton').addEventListener('click', copyOutput)
+
+if ('serviceWorker' in navigator)
+	navigator.serviceWorker.register('../service-worker.js', {
+		scope: '.',
+	})
+		.then(registration => {})
+		.catch(error => {
+			console.log(
+				"Couldn't register service worker: ",
+				error
+			)
+		})
+

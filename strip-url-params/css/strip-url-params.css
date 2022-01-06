@@ -30,11 +30,17 @@ body {
 }
 
 h1 {
-	margin: 0;
-	padding: 0.5rem;
+	margin: 0.5rem;
 	border-bottom: 1px solid #999;
 	font-size: calc(var(--font-size) * var(--h1-scale));
-	line-height: 0.8em;
+	padding-bottom: 0.1em;
+}
+
+h1 img {
+	width: 0.8em;
+	height: 0.8em;
+	display: inline-block;
+	margin-right: -0.1em;
 }
 
 samp, #url, #result {
