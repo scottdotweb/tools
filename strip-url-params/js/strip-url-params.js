@@ -41,3 +41,14 @@ if ('serviceWorker' in navigator)
 			)
 		})
 
+window.addEventListener('DOMContentLoaded', () => {
+	const parsedUrl = new URL(window.location)
+	const sharedUrl = parsedUrl.searchParams.get('url')
+	const sharedTitle = parsedUrl.searchParams.get('title')
+
+	if (sharedUrl)
+		document.getElementById('url').value = sharedUrl
+	else
+		document.getElementById('url').value = sharedTitle
+})
+
