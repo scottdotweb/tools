@@ -30,7 +30,7 @@ document.getElementById('url').addEventListener('input', clean)
 document.getElementById('copyButton').addEventListener('click', copyOutput)
 
 if ('serviceWorker' in navigator)
-	navigator.serviceWorker.register('../service-worker.js', {
+	navigator.serviceWorker.register('service-worker.js', {
 		scope: '.',
 	})
 		.then(registration => {})
