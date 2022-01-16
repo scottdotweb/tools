@@ -6,20 +6,16 @@ const CACHE_FILES = [
 	'js/strip-url-params.js',
 ]
 
-self.addEventListener('install', function (e) {
+self.addEventListener('install', e => {
 	e.waitUntil(
 		caches.open(CACHE_NAME)
-			.then(cache => {
-				return cache.addAll(CACHE_FILES)
-			})
+			.then(cache => cache.addAll(CACHE_FILES))
 	)
 })
 
-self.addEventListener('fetch', function (e) {
+self.addEventListener('fetch', e => {
 	e.respondWith(
 		caches.match(e.request)
-			.then(response => {
-				return response || fetch(e.request)
-			})
+			.then(response => (response || fetch(e.request)))
 	)
 })
