@@ -14,10 +14,10 @@
 		}
 	],
 	"start_url": ".",
+	"scope": ".",
 	"background_color": "#ffffff",
 	"theme_color": "#ffffff",
 	"display": "standalone",
-	"scope": "/",
 	"shortcuts": [
 	],
 	"description": "Remove parameters from a URL for clean sharing",
