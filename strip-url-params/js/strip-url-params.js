@@ -1,14 +1,16 @@
-function clean (e) {
-	const result = document.getElementById('result')
-	const resultContainer = document.getElementById('resultContainer')
+const e = el => document.getElementById(el)
 
-	document.getElementById('copyLabel').innerText = ''
+function clean (event) {
+	const result = e('result')
+	const resultContainer = e('resultContainer')
+
+	e('copyLabel').innerText = ''
 
 	const urlNoParams = /^(https?:\/\/.*?)\?/
 
-	const matches = urlNoParams.exec(e.target.value)
+	const matches = urlNoParams.exec(event.target.value)
 
-	result.innerText = matches ? matches[1] : e.target.value
+	result.innerText = matches ? matches[1] : event.target.value
 
 	resultContainer.style.display = result.innerText.length
 		? 'block'
@@ -16,30 +18,10 @@ function clean (e) {
 }
 
 function copyOutput () {
-	navigator.clipboard.writeText(
-		document.getElementById('result').innerText
-	)
+	navigator.clipboard.writeText(e('result').innerText)
 
-	document.getElementById('copyLabel').innerHTML = '<p>Copied!</p>'
+	e('copyLabel').innerHTML = '<p>Copied!</p>'
 }
-
-// --------------------------------------------------------------------------
-
-document.getElementById('url').value = ''
-document.getElementById('url').addEventListener('input', clean)
-document.getElementById('copyButton').addEventListener('click', copyOutput)
-
-if ('serviceWorker' in navigator)
-	navigator.serviceWorker.register('service-worker.js', {
-		scope: '.',
-	})
-		.then(registration => {})
-		.catch(error => {
-			console.log(
-				"Couldn't register service worker: ",
-				error
-			)
-		})
 
 function getParam (param) {
 	const parsedUrl = new URL(window.location)
@@ -50,7 +32,14 @@ function getParam (param) {
 window.addEventListener('DOMContentLoaded', () => {
 	const sharedUrl = getParam('url') || getParam('link') || getParam('text')
 
-	if (sharedUrl)
-		document.getElementById('url').value = sharedUrl
+	if (sharedUrl) e('url').value = sharedUrl
 })
 
+// --------------------------------------------------------------------------
+
+e('url').value = ''
+e('url').addEventListener('input', clean)
+e('copyButton').addEventListener('click', copyOutput)
+
+if ('serviceWorker' in navigator)
+	navigator.serviceWorker.register('service-worker.js', { scope: '.' })
