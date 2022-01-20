@@ -1,6 +1,6 @@
 const e = el => document.getElementById(el)
 
-function clean (event) {
+function clean (rawText) {
 	const result = e('result')
 	const resultContainer = e('resultContainer')
 
@@ -8,9 +8,9 @@ function clean (event) {
 
 	const urlNoParams = /^(https?:\/\/.*?)\?/
 
-	const matches = urlNoParams.exec(event.target.value)
+	const matches = urlNoParams.exec(rawText)
 
-	result.innerText = matches ? matches[1] : event.target.value
+	result.innerText = matches ? matches[1] : rawText
 
 	resultContainer.style.display = result.innerText.length
 		? 'block'
@@ -32,13 +32,16 @@ function getParam (param) {
 window.addEventListener('DOMContentLoaded', () => {
 	const sharedUrl = getParam('url') || getParam('link') || getParam('text')
 
-	if (sharedUrl) e('url').value = sharedUrl
+	if (sharedUrl) {
+		e('url').value = sharedUrl
+		clean(sharedUrl)
+	}
 })
 
 // --------------------------------------------------------------------------
 
 e('url').value = ''
-e('url').addEventListener('input', clean)
+e('url').addEventListener('input', e => clean(e.target.value))
 e('copyButton').addEventListener('click', copyOutput)
 
 if ('serviceWorker' in navigator)
