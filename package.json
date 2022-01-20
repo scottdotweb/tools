@@ -1,4 +1,8 @@
 {
+	"author": "Scott Martin (https://twitter.com/scottdotjs)",
+	"license": "UNLICENSED",
+	"private": true,
+	"homepage": "https://github.com/scottdotjs/tools",
 	"devDependencies": {
 		"eslint": "^8.7.0",
 		"eslint-config-standard": "^17.0.0-0",
