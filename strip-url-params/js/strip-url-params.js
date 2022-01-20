@@ -20,7 +20,7 @@ function copyOutput () {
 		document.getElementById('result').innerText
 	)
 
-	document.getElementById('copyLabel').innerText = 'Copied!'
+	document.getElementById('copyLabel').innerHTML = '<p>Copied!</p>'
 }
 
 // --------------------------------------------------------------------------

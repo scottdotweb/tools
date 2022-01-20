@@ -1,21 +1,44 @@
 @media screen and (max-width: 499px) {
 	:root {
 		--font-size: 1.75rem;
+		--samp-size: 0.5em;
 		--h1-scale: 2;
 		--button-scale: 1.25;
 	}
+
+	#copying {
+		width:  100vw;
+		flex-direction: column;
+		align-items: center;
+	}
+
 }
 
 @media screen and (min-width: 500px) {
 	:root {
 		--font-size: 1.25rem;
+		--samp-size: 0.66em;
 		--h1-scale: 2.5;
 	}
+
+	#copying {
+		width: 25em;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	#copyLabel {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
 }
 
 @media screen and (min-width: 800px) {
 	:root {
 		--font-size: 1rem;
+		--samp-size: 0.66em;
 		--h1-scale: 3;
 	}
 }
@@ -29,7 +52,7 @@ body {
 	font-family: sans-serif;
 }
 
-h1 {
+h1 { /* TODO: flex */;
 	margin: 0.5rem;
 	border-bottom: 1px solid #999;
 	font-size: calc(var(--font-size) * var(--h1-scale));
@@ -57,20 +80,23 @@ samp {
 	border: 1px solid #ccc;
 	padding: 0 0.5em;
 	border-radius: 0.5em;
-	font-size: 0.66em;
+	font-size: var(--samp-size);
 	font-weight: bold;
 }
 
 main {
 	margin: 0.5rem;
-	width: calc(100% - 1rem);
 }
 
 p {
 	margin: 0.5em 0;
 }
 
-#url, #result {
+#url {
+	font-size: var(--samp-size);
+}
+
+#result {
 	font-size: 0.8em;
 }
 
@@ -99,9 +125,14 @@ p {
 	font-weight: bold;
 }
 
+#copying {
+	margin-top: 1em;
+	display: flex;
+}
+
 #copyButton {
-	display:  block;
-	margin: 2em auto 1em auto;
+	display: block;
+	margin: 1.5em auto 1em auto;
 	width: 12em;
 	padding: 0.25em;
 }
@@ -109,11 +140,11 @@ p {
 #copyButton, #copyLabel {
 	font-weight: bold;
 	font-size: 1em;
+	border-radius: 0.5em;
 }
 
-#copyLabel {
-	display: inline-block;
-	margin: 0 0 0 0.5rem;
+#copyLabel p {
+	margin: 0;
 	font-style: italic;
 	color: #888;
 }
