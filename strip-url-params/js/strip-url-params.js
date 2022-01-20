@@ -48,12 +48,9 @@ function getParam (param) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-	const sharedUrl = getParam('url') || getParam('link')
-	const sharedTitle =	getParam('title') || getParam('name')
+	const sharedUrl = getParam('url') || getParam('link') || getParam('text')
 
 	if (sharedUrl)
 		document.getElementById('url').value = sharedUrl
-	else
-		document.getElementById('url').value = sharedTitle
 })
 
