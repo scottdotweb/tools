@@ -1,1 +1,94 @@
 <!DOCTYPE html>
+<html lang=en>
+<meta charset=UTF-8>
+<title>Scott's Tools</title>
+
+<style>
+body {
+	margin: 0.5em;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+h1 {
+	margin: 0;
+}
+
+a img {
+	border: 0;
+}
+
+li a {
+	font-weight: bold;
+	text-decoration-thickness: 1px;
+}
+
+footer {
+	margin-top: 5em;
+	text-align: center;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#info {
+	position: absolute;
+	top: 1em;
+	left: 30%;
+	width: 35%;
+	border: 5px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+}
+</style>
+
+<header>
+
+<h1>Scott's Tools</h1>
+
+<a href=https://www.mozilla.org/en-US/firefox/new/>
+	<img src=assets/netscape-now.gif alt="Netscape Now! 3.0" />
+</a>
+
+</header>
+
+<p>
+Small utilities for fixing data in one way or another.
+</p>
+
+<ul>
+	<li><a href="renaming-script-generator/">Renaming Script Generator</a></li>
+	<li><a href="strip-url-params">Strip URL Parameters</a> <img src=assets/new.gif alt=New! /></li>
+	<li><a href="vlc-playlist-fixer">VLC Playlist Fixer</a></li>
+</ul>
+
+<footer>
+
+<hr />
+
+Copyright &copy; 1997 Scott Martin. <a href=https://github.com/scottdotjs>Author Information</a> - <a href=help.html>Help</a>
+
+</footer>
+
+<script>
+const audio = new Audio('assets/rules.mp3')
+
+document.querySelector('a[href="help.html"]').addEventListener('click', e => {
+	e.preventDefault()
+
+	audio.play()
+
+	const info = document.createElement('img')
+	info.setAttribute('id', 'info')
+	info.setAttribute('src', 'assets/info.webp')
+
+	info.addEventListener('click', () => {
+		audio.pause()
+		info.remove()
+	})
+
+	document.querySelector('body').appendChild(info)
+})
+</script>
