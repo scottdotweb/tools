@@ -1,0 +1,31 @@
+nav {
+	border-bottom: 1px solid black;
+	padding: 0.5em 1em;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+nav ul li:before {
+	content: "→"
+}
+
+nav ul li:first-of-type::before {
+	content: ""
+}
+
+nav ul li a {
+	color: black;
+}
+
+a[aria-current=page] {
+	font-weight: bold;
+	text-decoration: none;
+}

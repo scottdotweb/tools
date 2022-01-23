@@ -1,0 +1,38 @@
+body {
+	margin: 0.5em;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+h1 {
+	margin: 0;
+}
+
+a img {
+	border: 0;
+}
+
+li a {
+	font-weight: bold;
+	text-decoration-thickness: 1px;
+}
+
+footer {
+	margin-top: 5em;
+	text-align: center;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#info {
+	position: absolute;
+	top: 1em;
+	left: 30%;
+	width: 35%;
+	border: 5px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+}

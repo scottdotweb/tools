@@ -1,0 +1,72 @@
+@import url(../styles/nav.css);
+
+@media (max-width: 800px) {
+	main {
+		width: calc(100% - 2em);
+	}
+}
+
+@media (min-width: 801px) {
+	main {
+		width: 50%;
+	}
+}
+
+body {
+	margin: 0;
+}
+
+main {
+	padding: 1em;
+}
+
+h1 {
+	margin: 0 0 0.5em 0;
+}
+
+h2 {
+	margin: 0.5em 0;
+}
+
+pre, code {
+	border-radius: 1em;
+}
+
+pre {
+	margin-bottom: 2em;
+}
+
+footer {
+	margin-top: 2em;
+	padding-top: 1em;
+	border-top: 1px solid #999;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	text-align: left;
+	font-weight: normal;
+}
+
+.bookmarklet {
+	text-align: center;
+	padding: 0 1em;
+}
+
+.bookmarklet a {
+	padding: 0.25em 0.5em;
+	text-decoration: none;
+	white-space: nowrap;
+	border-radius: 5px;
+	color: black;
+	background: #efebbb;
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.5);
+	font-size: 0.85em;
+	font-weight: bold;
+}
+
+.description {
+}
