@@ -1,0 +1,90 @@
+@import url(../../styles/tools.css);
+@import url(../../styles/nav.css);
+
+*, ::before, ::after {
+	box-sizing: border-box;
+}
+
+button {
+	font-family: Arial, sans-serif;
+}
+
+input, #browse span {
+	font-family: Consolas, Courier New, monospace;
+	font-size: 0.75rem;
+}
+
+#app {
+	display: flex;
+	justify-content: space-between;
+}
+
+#inputControls, #download {
+	width: 50%;
+	vertical-align: top;
+}
+
+#dropZone, #downloadButton {
+	width: 250px;
+	height: 250px;
+	border: 10px dashed #666;
+	border-radius: 20px;
+	background: #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#dropZoneLabel, #downloadButtonLabel {
+	margin: 0;
+	font-size: 75px;
+	font-weight: bold;
+	color: #000;
+}
+
+#browse, #downloadFilename {
+	margin-top: 25px;
+}
+
+#download {
+	display: none;
+}
+
+#download input {
+	border: 0;
+	background: #eee;
+	width: 248px;
+	text-align: center;
+}
+
+/* Via wtfforms.com - thanks */
+.file {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	height: 2.5rem;
+}
+
+.file input {
+	min-width: 14rem;
+	margin: 0;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+
+.browseLabel, .browseLabelActive {
+	position: absolute;
+	right: 0;
+	left: 0;
+	z-index: 2;
+	line-height: 1.5;
+	color: #555;
+	background-color: #fff;
+	border: .075rem solid #ddd;
+	border-radius: .25rem;
+	user-select: none;
+}
+
+.browseLabel::after {
+    content: "Choose file...";
+}

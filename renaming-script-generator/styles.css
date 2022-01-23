@@ -1,0 +1,67 @@
+@import url(../../styles/tools.css);
+@import url(../../styles/nav.css);
+
+form {
+	margin: 25px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	gap: 25px;
+	grid-template-areas:
+		"left center right"
+		"options ... ...";
+}
+
+#old-names {
+	grid-area: left;
+}
+
+#new-names {
+	grid-area: center;
+}
+
+#output {
+	grid-area: right;
+}
+
+#options {
+	grid-area: options;
+}
+
+textarea {
+	font-family: Consolas, Courier New, monospace;
+	height: 250px;
+}
+
+button {
+	height: 25px;
+	border-radius: 10px;
+}
+
+fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+legend {
+	font-weight: bold;
+	padding-bottom: 0.5em;
+}
+
+textarea {
+	width: 100%;
+	border: 0;
+	box-shadow: 5px 5px 5px -5px #666;
+	background: #ddd;
+}
+
+option, label {
+	font-size: 13px;
+}
+
+input[type="reset"] {
+	display: block;
+	clear: both;
+	margin-top: 1em;
+}

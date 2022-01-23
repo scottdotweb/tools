@@ -1,3 +1,4 @@
+@import url(../styles/tools.css);
 @import url(../styles/nav.css);
 
 @media (max-width: 800px) {
@@ -10,22 +11,6 @@
 	main {
 		width: 50%;
 	}
-}
-
-body {
-	margin: 0;
-}
-
-main {
-	padding: 1em;
-}
-
-h1 {
-	margin: 0 0 0.5em 0;
-}
-
-h2 {
-	margin: 0.5em 0;
 }
 
 pre, code {

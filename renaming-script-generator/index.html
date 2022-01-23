@@ -1,83 +1,28 @@
 <!DOCTYPE html>
-<head>
-	<meta charset="UTF-8" />
-	<title>Renaming Script Generator</title>
-<style>
-	body {
-		margin: 0;
-	}
+<meta charset="UTF-8" />
+<title>Renaming Script Generator</title>
 
-	form {
-		margin: 25px;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-template-rows: auto;
-		gap: 25px;
-		grid-template-areas:
-			"left center right"
-			"options ... ...";
-	}
+<link rel=stylesheet href=styles.css />
 
-	#old-names {
-		grid-area: left;
-	}
+<body>
 
-	#new-names {
-		grid-area: center;
-	}
+<header>
+	<nav>
+		<ul>
+			<li>
+				<a href=https://scottdotjs.github.io/tools/>Scott's Tools</a>
+			</li>
+			<li>
+				<a aria-current=page href=https://scottdotjs.github.io/tools/renaming-script-generator>Renaming Script Generator</a>
+			</li>
+		</ul>
+	</nav>
+</header>
 
-	#output {
-		grid-area: right;
-	}
+<main>
 
-	#options {
-		grid-area: options;
-	}
-
-	* {
-		font-family: Arial, sans-serif;
-	}
-
-	textarea {
-		font-family: Consolas, Courier New, monospace;
-		height: 250px;
-	}
-
-	button {
-		height: 25px;
-		border-radius: 10px;
-	}
-
-	fieldset {
-		margin: 0;
-		padding: 0;
-		border: 0;
-	}
-
-	legend {
-		font-weight: bold;
-		padding-bottom: 0.5em;
-	}
-
-	textarea {
-		width: 100%;
-		border: 0;
-		box-shadow: 5px 5px 5px -5px #666;
-		background: #ddd;
-	}
-
-	option, label {
-		font-size: 13px;
-	}
-
-	input[type="reset"] {
-		display: block;
-		clear: both;
-		margin-top: 1em;
-	}
-</style>
-</head>
 <h1>Renaming Script Generator</h1>
+
 <form>
 	<fieldset id=old-names>
 		<legend>Old names</legend>
@@ -104,6 +49,11 @@
 		<input type=reset />
 	</div>
 </form>
+
+</main>
+
+</body>
+
 <script>
 	function generate() {
 		const oldNames = document.querySelector('#old-names textarea').value.split(/\n/)
