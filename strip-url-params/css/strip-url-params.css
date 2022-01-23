@@ -17,7 +17,7 @@
 @media screen and (min-width: 500px) {
 	:root {
 		--font-size: 1.25rem;
-		--samp-size: 0.66em;
+		--samp-size: 0.75em;
 		--h1-scale: 2.5;
 	}
 
@@ -37,8 +37,8 @@
 
 @media screen and (min-width: 800px) {
 	:root {
-		--font-size: 1rem;
-		--samp-size: 0.66em;
+		--font-size: 1.5rem;
+		--samp-size: 0.75em;
 		--h1-scale: 3;
 	}
 }
