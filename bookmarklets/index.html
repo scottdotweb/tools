@@ -108,13 +108,13 @@ void 0
 			<a>Get GIF from a tweet</a>
 		</td>
 		<td class=description>
-			Use on: view of an individual tweet. Note: Twitter labels them as GIFs but they're actually MP4 video files. If you want to convert them to actual GIFs, you can <a href=https://homehack.nl/create-animated-gifs-from-mp4-with-ffmpeg/>do it easily with FFmpeg</a>.
+			Use on: view of an individual tweet. Opens the animation in a new window. Note: Twitter labels them as GIFs but they're actually MP4 video files. If you want to convert them to actual GIFs, you can <a href=https://homehack.nl/create-animated-gifs-from-mp4-with-ffmpeg/>do it easily with FFmpeg</a>.
 		</td>
 	</tr>
 	<tr>
 		<td colspan=2>
 			<pre><code class=language-javascript>(function() {
-	window.open(document.getElementsByTagName("video")[0].src, "video")
+	window.open(document.getElementsByTagName('video')[0].src, 'video')
 })()
 </code></pre>
 		</td>
@@ -134,7 +134,7 @@ void 0
 	</tr>
 	<tr>
 		<td colspan=2>
-			<pre><code class=language-javascript>q = '' + (
+			<pre><code class=language-javascript>let q = '' + (
 	window.getSelection
 		? window.getSelection()
 		: document.getSelection
@@ -145,7 +145,7 @@ void 0
 if (!q) q = prompt('Enter an npm package name', '')
 
 if (q !== null) location = 'https://npmjs.com/package'
-	+ escape(q).replace(/ /g, "+")
+	+ escape(q).replace(/ /g, '+')
 
 void 0
 </code></pre>
