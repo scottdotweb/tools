@@ -1,18 +1,22 @@
 const e = el => document.getElementById(el)
 
 function clean (rawText) {
-	const result = e('result')
+	const resultBox = e('result')
 	const resultContainer = e('resultContainer')
 
 	e('copyLabel').innerText = ''
 
-	const urlNoParams = /^(https?:\/\/.*?)\?/
+	const urlNoParams = /^.*?(https?:\/\/.*?)\?/
 
 	const matches = urlNoParams.exec(rawText)
 
-	result.innerText = matches ? matches[1] : rawText
+	let result = matches ? matches[1] : rawText
 
-	resultContainer.style.display = result.innerText.length
+	if (result.match(/\.amazon./)) result = result.replace(/\/ref=.*?$/, '')
+
+	resultBox.innerText = result
+
+	resultContainer.style.display = resultBox.innerText.length
 		? 'block'
 		: 'none'
 }
