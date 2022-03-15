@@ -1,0 +1,25 @@
+# Playlist Entropy Repair Tool (Pert) for YouTube
+
+## Description
+
+When an entry on one of your YouTube playlists becomes unavailable, either through having been deleted or made private, the service will not only remove it from your playlist but also refuse to tell you what it was. The reasoning for this manifestly stupid behavior has never been provided, but the consequence is the same - you can't have any confidence in them as a tool for curation. If you didn't happen to make a record of what was in your playlist (and who does that?), when part of it goes missing years later you're screwed. This is where Pert comes in.
+
+When you get an export of one of your playlists as JSON (instructions for that to come later), missing videos still have their ID included. Put one of those JSON files into Pert and it will use the video IDs to find captures of the video pages in the Internet Archive's [Wayback Machine](https://web.archive.org/). Those captures don't include the videos, but do have the video's title and upload date. With any luck, that information may be enough to help you find replacement copies to repair your playlist with.
+
+## Usage
+
+At the moment Pert exists as a script to be run with Node. Eventually it will be a web app.
+
+`node pert.mjs <playlist JSON file name or path>`
+
+If no file name or path is given Pert will default to `playlist.json`.
+
+The results will be logged in the console. Pert doesn't automatically retrieve unavailable videos' titles from the archive yet so will give you the URLs to check yourself.
+
+## Author and license
+
+Copyright 2022 [Scott Martin](https://github.com/scottdotjs).
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
