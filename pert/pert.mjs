@@ -12,7 +12,6 @@ const PLAYLIST = process.argv.slice(2)[0] ? process.argv.slice(2)[0] : 'playlist
 		https://www.npmjs.com/package/cheerio
 	- (Eventually) Use YouTube Data API to get JSON for playlists
 		https://developers.google.com/youtube/v3/docs
-	- Rename to Playlist Entropy Repair Tool
 */
 
 for (const video of JSON.parse(fs.readFileSync(PLAYLIST, 'utf8'))) {

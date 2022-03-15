@@ -1,4 +1,4 @@
-# Playlist Entropy Repair Tool (Pert) for YouTube
+# Playlist entropy repair tool (Pert) for YouTube
 
 ## Description
 
