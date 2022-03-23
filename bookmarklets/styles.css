@@ -1,16 +1,9 @@
 @import url(../styles/tools.css);
 @import url(../styles/nav.css);
 
-@media (max-width: 800px) {
-	main {
-		width: calc(100% - 2em);
-	}
-}
-
-@media (min-width: 801px) {
-	main {
-		width: 50%;
-	}
+main {
+	margin: 1rem max(calc(100% - 50rem) / 2, 0.5rem);
+	padding: 0;
 }
 
 pre, code {
@@ -18,7 +11,8 @@ pre, code {
 }
 
 pre {
-	margin-bottom: 2em;
+	white-space: pre-wrap;
+	margin: 2em 0 3em 0;
 }
 
 footer {
