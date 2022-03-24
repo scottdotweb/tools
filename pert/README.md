@@ -1,14 +1,14 @@
-# Playlist entropy repair tool (Pert) for YouTube
+# Playlist Entropy Repair Tool (PERT) for YouTube
 
 ## Description
 
-When an entry on one of your YouTube playlists becomes unavailable, either through having been deleted or made private, the service will not only remove it from your playlist but also refuse to tell you what it was. The reasoning for this manifestly stupid behavior has never been provided, but the consequence is the same - you can't have any confidence in them as a tool for curation. If you didn't happen to make a record of what was in your playlist (and who does that?), when part of it goes missing years later you're screwed. This is where Pert comes in.
+When an entry on one of your YouTube playlists becomes unavailable, either through having been deleted or made private, the service will not only remove it from your playlist but also refuse to tell you what it was. The reasoning for this manifestly stupid behavior has never been provided, but the consequence is the same - you can't have any confidence in them as a tool for curation. If you didn't happen to make a record of what was in your playlist (and who does that?), when part of it goes missing years later you're screwed. This is where PERT comes in.
 
-When you get an export of one of your playlists as JSON (instructions for that to come later), missing videos still have their ID included. Put one of those JSON files into Pert and it will use the video IDs to find captures of the video pages in the Internet Archive's [Wayback Machine](https://web.archive.org/). Those captures don't include the videos, but do have the video's title and upload date. With any luck, that information may be enough to help you find replacement copies to repair your playlist with.
+When you get an export of one of your playlists as JSON (instructions for that to come later), missing videos still have their ID included. Put one of those JSON files into PERT and it will use the video IDs to find captures of the video pages in the Internet Archive's [Wayback Machine](https://web.archive.org/). Those captures don't include the videos, but do have the video's title and upload date. With any luck, that information may be enough to help you find replacement copies to repair your playlist with.
 
 ## Installation
 
-Eventually Pert will be a web app available in [my tools](https://scottdotjs.github.io/), but for now it runs on the command line.
+Eventually PERT will be a web app available in [my tools](https://scottdotjs.github.io/), but for now it runs on the command line.
 
 * Clone [the tools repo](https://github.com/scottdotjs/tools)
 * If you don't have [pnpm](https://pnpm.io) installed, `npm install -g pnpm`
@@ -19,7 +19,7 @@ Eventually Pert will be a web app available in [my tools](https://scottdotjs.git
 
 `node pert.mjs <playlist JSON file name or path>`
 
-If no file name or path is given Pert will default to `playlist.json`.
+If no file name or path is given PERT will default to `playlist.json`.
 
 The results will be logged in the console.
 
