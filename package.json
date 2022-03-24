@@ -4,13 +4,15 @@
 	"private": true,
 	"homepage": "https://github.com/scottdotjs/tools",
 	"devDependencies": {
-		"eslint": "^8.7.0",
-		"eslint-config-standard": "^17.0.0-0",
+		"eslint": "^8.11.0",
+		"eslint-config-standard": "^17.0.0-1",
 		"eslint-plugin-import": "^2.25.4",
 		"eslint-plugin-n": "^14.0.0",
 		"eslint-plugin-promise": "^6.0.0"
 	},
 	"dependencies": {
+		"chalk": "^5.0.1",
+		"cheerio": "^1.0.0-rc.10",
 		"node-fetch": "^3.2.3"
 	}
 }
