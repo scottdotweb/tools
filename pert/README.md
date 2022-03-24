@@ -6,15 +6,22 @@ When an entry on one of your YouTube playlists becomes unavailable, either throu
 
 When you get an export of one of your playlists as JSON (instructions for that to come later), missing videos still have their ID included. Put one of those JSON files into Pert and it will use the video IDs to find captures of the video pages in the Internet Archive's [Wayback Machine](https://web.archive.org/). Those captures don't include the videos, but do have the video's title and upload date. With any luck, that information may be enough to help you find replacement copies to repair your playlist with.
 
+## Installation
+
+Eventually Pert will be a web app available in [my tools](https://scottdotjs.github.io/), but for now it runs on the command line.
+
+* Clone [the tools repo](https://github.com/scottdotjs/tools)
+* If you don't have [pnpm](https://pnpm.io) installed, `npm install -g pnpm`
+* `cd tools/pert; pnpm install`
+
 ## Usage
 
-At the moment Pert exists as a script to be run with Node. Eventually it will be a web app.
 
 `node pert.mjs <playlist JSON file name or path>`
 
 If no file name or path is given Pert will default to `playlist.json`.
 
-The results will be logged in the console. Pert doesn't automatically retrieve unavailable videos' titles from the archive yet so will give you the URLs to check yourself.
+The results will be logged in the console.
 
 ## Author and license
 
