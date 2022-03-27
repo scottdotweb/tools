@@ -49,4 +49,4 @@ e('url').addEventListener('input', e => clean(e.target.value))
 e('copyButton').addEventListener('click', copyOutput)
 
 if ('serviceWorker' in navigator)
-	navigator.serviceWorker.register('service-worker.js', { scope: '.' })
+	navigator.serviceWorker.register('serviceWorker.js', { scope: '.' })

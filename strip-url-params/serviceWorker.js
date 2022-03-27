@@ -3,7 +3,7 @@ const CACHE_NAME = 'strip-url-params'
 const CACHE_FILES = [
 	'index.html',
 	'styles.css',
-	'strip-url-params.js',
+	'stripUrlParams.js',
 ]
 
 const NETWORK_TIMEOUT = 5000
