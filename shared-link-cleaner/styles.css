@@ -65,6 +65,7 @@ label {
 	border: 0.25em dashed #88dd66;
 	border-radius: 0.25em;
 	background-color: #c0ffcc;
+	text-align: left;
 	line-break: anywhere;
 	font-weight: bold;
 }

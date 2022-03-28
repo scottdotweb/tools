@@ -1,5 +1,6 @@
 const e = el => document.getElementById(el)
 const urlBox = e('url')
+const footer = e('footer')
 
 const sampleUrl = 'https://example.com/post/whatever?tracking-id=abcdef123456'
 
@@ -28,6 +29,7 @@ function clean (rawText) {
 function copyOutput () {
 	navigator.clipboard.writeText(e('result').innerText)
 
+	footer.style.marginTop = '2.5em'
 	e('copyNotification').innerHTML = 'Copied!'
 }
 
