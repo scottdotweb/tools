@@ -1,60 +1,51 @@
 <!doctype html>
 <html lang=en>
-<meta charset=UTF-8 />
-<meta name=viewport content="width=device-width, initial-scale=1.0" />
-<meta name=theme-color content="#ffffff" />
-<link rel=manifest href=manifest.json />
-<link rel=icon type=image/png href=images/favicon.png />
-<link rel=apple-touch-icon href=images/apple-touch-icon.png />
-<link rel=stylesheet href=styles.css />
-<meta property=og:title content="Strip URL Parameters" />
-<meta property=og:description content="A tool you can use to strip unwanted parameters off URLs. It can be installed on phones and shared to from other apps." />
-<meta property=og:url content=https://scottdotjs.github.io/tools/strip-url-params/ />
-<meta property=og:image content=https://scottdotjs.github.io/tools/strip-url-params/images/icon-512.png />
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<meta name=theme-color content=#ffffff>
+<link rel=manifest href=manifest.json>
+<link rel=icon type=image/png href=images/favicon.png>
+<link rel=apple-touch-icon href=images/apple-touch-icon.png>
+<link rel=stylesheet href=styles.css>
+<meta property=og:title content="Strip URL Parameters">
+<meta property=og:description content="A tool you can use to strip unwanted parameters off URLs. It can be installed on phones and shared to from other apps.">
+<meta property=og:url content=https://scottdotjs.github.io/tools/strip-url-params/>
+<meta property=og:image content=https://scottdotjs.github.io/tools/strip-url-params/images/icon-512.png>
 
-<title>Strip URL parameters</title>
+<title>Shared Link Cleaner</title>
 
-<body>
+<header>
+	<h1>
+		<img src=images/icon-512.png alt="">
+		Shared Link Cleaner
+	</h1>
+</header>
+
+<main>
 
 	<noscript>
 		Sorry, this tool requires JavaScript to run.
 	</noscript>
 
-	<header>
-		<h1>
-			<img src=images/icon-512.png alt="" />
-			Strip URL parameters
-		</h1>
-	</header>
+	<div id=intro>
+		Did you know that when you share a link from many of the major social media apps, they add a tracking ID to it? Use this tool to get rid of them. This page is a Progressive Web App (PWA), so install it <!-- TODO: link to instructions --> onto your phone or tablet and share links directly into it to clean them!
+	</div>
 
-	<main>
+	<label for=url>Enter a dirty link:</label> 
 
-		<p> <!-- TODO: Button to present an info panel to explain things -->
-			Enter a URL below to get it with all parameters removed. <span class=params>(<samp>?creepy-tracking-id=abcdef123456...</samp>)</span>
-		</p>
+	<textarea id=url name=url></textarea>
 
-		<input type=url id=url placeholder="https://example.com/your-URL-here" />
+	<!-- TODO: Better visual button feedback -->
+	<div id=resultContainer>
+		<div id=copyInfo>📋 Click link to copy</div>
+		<button id=result></button>
+		<div id=copyNotification aria-live=polite aria-relevant=additions></div>
+	</div>
 
-		<div id=resultContainer>
-			<p>
-				Your cleaned URL:
-			</p>
+</main>
 
-			<div id=result></div>
-
-			<div id=copying> <!-- TODO: Better visual button feedback -->
-				<button id=copyButton>📋 Copy to clipboard</button>
-				<div id=copyLabel aria-live=polite aria-relevant=additions></div>
-			</div>
-		</div>
-
-	</main>
-
-	<footer>
-		One of <a href=https://scottdotjs.github.io/tools>Scott's Tools</a>
-	</footer>
+<footer>
+	One of <a href=https://scottdotjs.github.io/tools>Scott&rsquo;s Tools</a>
+</footer>
 
 <script src=stripUrlParams.js></script>
-
-</body>
-</html>
