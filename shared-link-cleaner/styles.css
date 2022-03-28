@@ -20,11 +20,13 @@ h1 img {
 }
 
 header, main, footer {
-	margin: 1rem max(calc(100% - 50rem) / 2, 1rem)
+	margin-top: 1rem;
+	margin-right: max(calc(100% - 50rem) / 2, 1rem);
+	margin-bottom: 0;
+	margin-left:  max(calc(100% - 50rem) / 2, 1rem);
 }
 
 footer {
-	margin-top: 5em;
 	padding: 0 0.5em;
 	font-style: italic;
 	font-size: clamp(0.85rem, 1.25vw, 1rem); 
@@ -48,17 +50,22 @@ label {
 
 #url {
 	width: calc(100% - 1em);
+	height: 4em;
 	border-top: 0;
 	border-right: 0;
 	border-bottom: 0.25em solid black;
 	border-left: 0;
 	background-color: #ededed;
-	height: 4em;
+	color: #696969;
 }
 
 #resultContainer {
+	margin-top: 1em;
+	height: 4em;
+}
+
+#resultContainerInner {
 	display: none;
-	margin: 1em 0 0 0;
 }
 
 #result {
@@ -73,8 +80,9 @@ label {
 #copyInfo {
 	width: min-content;
 	margin: 0 auto 0.5em auto;
-	font-size: smaller;
 	white-space: pre;
+	font-size: smaller;
+	font-style: italic;
 }
 
 #copyButton {
@@ -82,17 +90,19 @@ label {
 	margin: 1.5em auto 1em auto;
 	width: 12em;
 	padding: 0.25em;
+	border-radius: 0.5em;
 }
 
 #copyButton, #copyNotification {
 	font-weight: bold;
 	font-size: 1em;
-	border-radius: 0.5em;
 }
 
 #copyNotification {
 	width: min-content;
-	margin: 1em auto 0 auto;
+	height: 2em;
+	margin: 0 auto;
+	padding-top: 1em;
 	font-style: italic;
 	color: #888;
 }
