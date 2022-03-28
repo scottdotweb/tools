@@ -1,9 +1,9 @@
-const CACHE_NAME = 'strip-url-params'
+const CACHE_NAME = 'shared-link-cleaner'
 
 const CACHE_FILES = [
 	'index.html',
 	'styles.css',
-	'stripUrlParams.js',
+	'sharedLinkCleaner.js',
 ]
 
 const NETWORK_TIMEOUT = 5000

@@ -1,5 +1,5 @@
 {
-	"name": "Strip URL Parameters",
+	"name": "Shared Link Cleaner",
 	"icons": [
 		{
 			"src": "images/icon-192.png",
@@ -20,7 +20,7 @@
 	"display": "standalone",
 	"shortcuts": [
 	],
-	"description": "Remove parameters from a URL for clean sharing",
+	"description": "Remove tracking IDs and other parameters from a URL for clean sharing",
 	"screenshots": [
 	],
 	"share_target": {
