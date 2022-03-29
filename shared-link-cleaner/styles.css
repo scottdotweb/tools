@@ -1,9 +1,36 @@
-body {
-	margin: 0;
+@font-face	{
+	src: url(fonts/TitilliumWeb-Regular.ttf);
+	font-family: "TitilliumWeb";
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face	{
+	src: url(fonts/TitilliumWeb-Bold.ttf);
+	font-family: "TitilliumWeb";
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face	{
+	src: url(fonts/TitilliumWeb-Italic.ttf);
+	font-family: "TitilliumWeb";
+	font-weight: normal;
+	font-style: italic;
 }
 
 * {
-	font-family: sans-serif;
+	font-family: "TitilliumWeb";
+}
+
+/*
+Titillium Web is copyright 2009-2011 by Accademia di Belle Arti di Urbino and
+students of MA course of Visual Design. Some rights reserved. Licensed under
+the SIL Open Font License, Version 1.1. http://scripts.sil.org/OFL
+*/
+
+body {
+	margin: 0;
 }
 
 header, main, footer {
@@ -22,16 +49,18 @@ header {
 h1 {
 	display: flex;
 	margin: 0;
-	width: 10.7em;
+	padding-bottom: 0.25em;
 	align-items: center;
 	justify-content: space-between;
+	line-height: 1em;
 }
 
 h1 img {
 	display: inline-block;
 	width: 0.82em;
 	height: 0.82em;
-	margin-top: -0.05em;
+	margin-top: 0.05em;
+	margin-right: 0.25em;
 }
 
 #siteLink {
@@ -44,12 +73,14 @@ h1 img {
 }
 
 #intro, label {
-	font-size: clamp(1rem, 2vw, 1.25rem); /* ??? */
+	line-height: 1.25em;
+	font-size: clamp(1rem, 2vw, 1.5rem);
+	text-align: justify;
 }
 
 label {
 	display: block;
-	margin: 1em 0;
+	margin: 1em 0 0 0;
 }
 
 #url, #result {
@@ -89,7 +120,7 @@ label {
 	margin: 0 auto 0.5em auto;
 	white-space: pre;
 	font-size: smaller;
-	font-style: italic;
+	font-weight: bold;
 }
 
 #copyInfo:before {
