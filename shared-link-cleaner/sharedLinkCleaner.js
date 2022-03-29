@@ -1,11 +1,11 @@
-const q = s => document.querySelector(s)
+const q = selector => document.querySelector(selector)
 
 const urlBox = q('#url')
-const resultContainerInner = q('#resultContainerInner')
+const resultContainer = q('#resultContainer')
 const resultBox = q('#result')
 const copyNotification = q('#copyNotification')
 
-const SAMPLE_URL = 'https://example.com/post/whatever?tracking-id=abcdef123456'
+const SAMPLE_URL = 'https://example.com/post/whatever?si=abcdef123456'
 
 function prepUrlBoxIfNecessary () {
 	if (urlBox.value === SAMPLE_URL) prepUrlBox()
@@ -31,7 +31,7 @@ function handleInput () {
 }
 
 function hideResultBox () {
-	resultContainerInner.style.display = 'none'
+	resultContainer.style.display = 'none'
 }
 
 // TODO: Handle bad input
@@ -54,7 +54,7 @@ function clean (rawText) {
 
 	resultBox.innerText = result
 
-	resultContainerInner.style.display = 'block'
+	resultContainer.style.display = 'block'
 }
 
 function copyOutput () {
@@ -63,7 +63,7 @@ function copyOutput () {
 	copyNotification.innerHTML = 'Copied!'
 }
 
-// --------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 urlBox.innerText = SAMPLE_URL
 
@@ -76,7 +76,6 @@ urlBox.addEventListener('beforeinput', prepUrlBoxIfNecessary)
 urlBox.addEventListener('input', handleInput)
 
 resultBox.addEventListener('click', copyOutput)
-q('#copyInfo').addEventListener('click', copyOutput)
 
 window.addEventListener('DOMContentLoaded', () => {
 	const getParam = param => new URL(window.location).searchParams.get(param)

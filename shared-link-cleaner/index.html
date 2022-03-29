@@ -19,6 +19,12 @@
 		<img src=images/icon-512.png alt="">
 		Shared Link Cleaner
 	</h1>
+
+	<div id=siteLink>
+		<div>
+			One of <a href=https://scottdotjs.github.io/tools>Scott&rsquo;s Tools</a>
+		</div>
+	</div>
 </header>
 
 <main>
@@ -28,7 +34,7 @@
 	</noscript>
 
 	<div id=intro>
-		Did you know that when you share a link from many of the major social media apps, they add a tracking ID to it? Use this tool to get rid of them. This page is a Progressive Web App (PWA), so install it <!-- TODO: link to instructions --> onto your phone or tablet and share links directly into it to clean them!
+		Did you know that when you share a link from many of the major social media apps, they add a tracking ID to it? <!-- TODO: examples.html which also needs to go in the manifest --> Use this tool to get rid of them. This page is a Progressive Web App (PWA), so install it <!-- TODO: link to instructions --> onto your phone or tablet and share links directly into it to clean them!
 	</div>
 
 	<label for=url>Enter a dirty link:</label> 
@@ -36,17 +42,11 @@
 	<textarea id=url name=url></textarea>
 
 	<div id=resultContainer>
-		<div id=resultContainerInner>
-			<div id=copyInfo>📋 Click link to copy</div>
-			<button id=result></button>
-		</div>
+		<div id=copyInfo>Click link to copy</div>
+		<button id=result></button>
+		<div id=copyNotification aria-live=polite aria-relevant=additions></div>
 	</div>
-	<div id=copyNotification aria-live=polite aria-relevant=additions></div>
 
 </main>
-
-<footer id=footer>
-	One of <a href=https://scottdotjs.github.io/tools>Scott&rsquo;s Tools</a>
-</footer>
 
 <script src=sharedLinkCleaner.js></script>

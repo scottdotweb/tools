@@ -6,19 +6,6 @@ body {
 	font-family: sans-serif;
 }
 
-h1 { /* TODO: flex */;
-	margin: 0;
-	border-bottom: 1px solid #999;
-	padding-bottom: 0.1em;
-}
-
-h1 img {
-	width: 0.8em;
-	height: 0.8em;
-	display: inline-block;
-	margin-right: -0.1em;
-}
-
 header, main, footer {
 	margin-top: 1rem;
 	margin-right: max(calc(100% - 50rem) / 2, 1rem);
@@ -26,10 +13,34 @@ header, main, footer {
 	margin-left:  max(calc(100% - 50rem) / 2, 1rem);
 }
 
-footer {
-	padding: 0 0.5em;
+header {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #999;
+}
+
+h1 {
+	display: flex;
+	margin: 0;
+	width: 10.7em;
+	align-items: center;
+	justify-content: space-between;
+}
+
+h1 img {
+	display: inline-block;
+	width: 0.82em;
+	height: 0.82em;
+	margin-top: -0.05em;
+}
+
+#siteLink {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 10em;
 	font-style: italic;
-	font-size: clamp(0.85rem, 1.25vw, 1rem); 
+	font-size: clamp(0.85rem, 1vw, 1rem); 
 }
 
 #intro, label {
@@ -43,14 +54,14 @@ label {
 
 #url, #result {
 	width: 100%;
-	padding: 0.5em;
 	font-family: Consolas, "Courier New", monospace;
 	font-size: clamp(1rem, 2vw, 1.5rem); 
 }
 
 #url {
-	width: calc(100% - 1em);
+	width: calc(100% - 1.5em);
 	height: 4em;
+	padding: 0.5em 0.75em;
 	border-top: 0;
 	border-right: 0;
 	border-bottom: 0.25em solid black;
@@ -61,20 +72,16 @@ label {
 
 #resultContainer {
 	margin-top: 1em;
-	height: 4em;
-}
-
-#resultContainerInner {
 	display: none;
 }
 
 #result {
 	border: 0.25em dashed #88dd66;
+	padding: 0.5em;
 	border-radius: 0.25em;
 	background-color: #c0ffcc;
 	text-align: left;
 	line-break: anywhere;
-	font-weight: bold;
 }
 
 #copyInfo {
@@ -83,6 +90,10 @@ label {
 	white-space: pre;
 	font-size: smaller;
 	font-style: italic;
+}
+
+#copyInfo:before {
+	content: "\1F4CB\0020";
 }
 
 #copyButton {
@@ -101,8 +112,7 @@ label {
 #copyNotification {
 	width: min-content;
 	height: 2em;
-	margin: 0 auto;
-	padding-top: 1em;
-	font-style: italic;
-	color: #888;
+	margin: 1em auto 0 auto;
+	font-weight: bold;
+	color: #696969;
 }
