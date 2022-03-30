@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shared-link-cleaner'
+const CACHE_NAME = 'shareSafely'
 
 const CACHE_FILES = [
 	'fonts/TitilliumWeb-Regular.ttf',
@@ -6,7 +6,7 @@ const CACHE_FILES = [
 	'fonts/TitilliumWeb-Italic.ttf',
 	'images/share-icon.svg',
 	'index.html',
-	'sharedLinkCleaner.js',
+	'shareSafely.js',
 	'styles.css',
 ]
 
