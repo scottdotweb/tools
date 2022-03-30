@@ -1,12 +1,13 @@
 const CACHE_NAME = 'shared-link-cleaner'
 
 const CACHE_FILES = [
-	'index.html',
-	'styles.css',
-	'sharedLinkCleaner.js',
 	'fonts/TitilliumWeb-Regular.ttf',
 	'fonts/TitilliumWeb-Bold.ttf',
 	'fonts/TitilliumWeb-Italic.ttf',
+	'images/share-icon.svg',
+	'index.html',
+	'sharedLinkCleaner.js',
+	'styles.css',
 ]
 
 const NETWORK_TIMEOUT = 5000

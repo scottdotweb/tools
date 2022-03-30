@@ -135,8 +135,11 @@ label {
 	border-radius: 0.5em;
 }
 
-#copyButton, #copyNotification {
+button {
 	font-weight: bold;
+}
+
+#copyButton, #copyNotification {
 	font-size: 1em;
 }
 
@@ -144,6 +147,26 @@ label {
 	width: min-content;
 	height: 2em;
 	margin: 1em auto 0 auto;
-	font-weight: bold;
 	color: #696969;
+}
+
+#shareContainer {
+	display: none;
+	margin-top: 5vw;
+	justify-content: center;
+}
+
+#shareButton {
+	display: flex;
+	height: 5rem;
+	width: 20rem;
+	border-radius: 2rem;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+}
+
+#shareButton img {
+	width: 0.85em;
+	height: 0.85em;
 }

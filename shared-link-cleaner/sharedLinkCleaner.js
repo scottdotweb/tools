@@ -4,6 +4,7 @@ const urlBox = q('#url')
 const resultContainer = q('#resultContainer')
 const resultBox = q('#result')
 const copyNotification = q('#copyNotification')
+const shareContainer = q('#shareContainer')
 
 const SAMPLE_URL = 'https://example.com/post/whatever?si=abcdef123456'
 
@@ -32,6 +33,7 @@ function handleInput () {
 
 function hideResultBox () {
 	resultContainer.style.display = 'none'
+	shareContainer.display = 'none'
 }
 
 // TODO: Handle bad input
@@ -55,12 +57,31 @@ function clean (rawText) {
 	resultBox.innerText = result
 
 	resultContainer.style.display = 'block'
+
+	if (window.navigator.canShare) {
+		shareContainer.style.display = 'flex'
+		q('#shareButton').addEventListener('click', share)
+	}
 }
 
 function copyOutput () {
 	navigator.clipboard.writeText(resultBox.innerText)
 
 	copyNotification.innerHTML = 'Copied!'
+}
+
+async function share () {
+	try {
+		await navigator.share(
+			{
+				title: undefined,
+				text:  undefined,
+				url:   resultBox.innerText,
+			}
+		)
+	} catch (err) {
+		console.error(`Couldn't share: ${err}`)
+	}
 }
 
 // ---------------------------------------------------------------------------
