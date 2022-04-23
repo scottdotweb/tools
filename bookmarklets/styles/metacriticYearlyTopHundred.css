@@ -46,14 +46,14 @@ img {
 	text-align: right;
 }
 
-.score, .seen {
+.score, label {
 	width: 2.5rem;
 	height: 2.5rem;
+	border-radius: 0.75rem;
 }
 
 .score {
 	border: 0.1rem solid transparent;
-	border-radius: 0.75rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -65,16 +65,39 @@ img {
 }
 
 .medium 
-{	background-color: rgb(255, 204, 51);
+{
+	background-color: rgb(255, 204, 51);
 }
 
 .low {
 	background-color: rgb(255, 0, 0);
 }
 
-.seen {
+.seenBox {
 	margin-left: 1rem;
 	border: 0.1rem solid rgb(200, 200, 200);
 	border-radius: 0.75rem;
 	background-color: rgb(240, 240, 240);
+}
+
+input[type=checkbox] {
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+label {
+	display: flex;
+	cursor: pointer;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+}
+
+input[type="checkbox"]:checked + label::after {
+	content: "✔";
 }

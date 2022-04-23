@@ -36,11 +36,6 @@ for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer]
 
 	const tr = document.createElement('tr')
 
-	const seenCell = document.createElement('td')
-	const seenBox = document.createElement('div')
-	seenBox.setAttribute('class', 'seen')
-	seenCell.appendChild(seenBox)
-
 	const imageCell = document.createElement('td')
 	const image = document.createElement('img')
 	image.setAttribute('src', imgSrc)
@@ -66,6 +61,22 @@ for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer]
 			: 'low'
 	scoreBox.classList.add(scoreGroup)
 	scoreCell.appendChild(scoreBox)
+
+	const seenCell = document.createElement('td')
+	const seenBox = document.createElement('div')
+	seenBox.setAttribute('class', 'seenBox')
+
+	const checkboxId = `film${count}`
+	const checkbox = document.createElement('input')
+	checkbox.setAttribute('type', 'checkbox')
+	checkbox.setAttribute('id', checkboxId)
+
+	const label = document.createElement('label')
+	label.setAttribute('for', checkboxId)
+
+	seenCell.appendChild(seenBox)
+	seenBox.appendChild(checkbox)
+	seenBox.appendChild(label)
 
 	tr.appendChild(imageCell)
 	tr.appendChild(countCell)
