@@ -17,7 +17,7 @@ document.head.appendChild(style)
 
 const year = document.querySelector('.year button').innerText
 
-const pageTitle = `Metacritic users&rsquo; top 100 films for ${year}`
+const pageTitle = `Metacritic&rsquo;s top 100 films for ${year}`
 
 const h1 = document.createElement('h1')
 h1.innerHTML = pageTitle
