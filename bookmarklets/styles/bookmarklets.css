@@ -1,5 +1,5 @@
-@import url(../styles/tools.css);
-@import url(../styles/nav.css);
+@import url(../../styles/tools.css);
+@import url(../../styles/nav.css);
 
 main {
 	margin: 1rem max(calc(100% - 50rem) / 2, 0.5rem);

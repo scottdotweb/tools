@@ -1,0 +1,80 @@
+@media print {
+	h1 {
+		font-size: 1.5rem;
+	}
+
+	td {
+		font-size: 1rem;
+	}
+}
+
+@media screen {
+	h1 {
+		font-size: 2rem;
+	}
+
+	td {
+		font-size: 1.25rem;
+	}
+}
+
+body {
+	margin: 0;
+}
+
+* {
+	font-family: sans-serif;
+}
+
+main {
+	margin-inline: max(12.5vw, 2ch);
+}
+
+img {
+	height: 3em;
+}
+
+.title, .count {
+	padding-right: 1rem;
+}
+
+.title, .score {
+	font-weight: bold;
+}
+
+.count {
+	text-align: right;
+}
+
+.score, .seen {
+	width: 2.5rem;
+	height: 2.5rem;
+}
+
+.score {
+	border: 0.1rem solid transparent;
+	border-radius: 0.75rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.high {
+	background-color: rgb(102, 204, 51);
+}
+
+.medium 
+{	background-color: rgb(255, 204, 51);
+}
+
+.low {
+	background-color: rgb(255, 0, 0);
+}
+
+.seen {
+	margin-left: 1rem;
+	border: 0.1rem solid rgb(200, 200, 200);
+	border-radius: 0.75rem;
+	background-color: rgb(240, 240, 240);
+}
