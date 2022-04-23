@@ -34,6 +34,10 @@ main {
 	margin-inline: max(12.5vw, 2ch);
 }
 
+.seenCount {
+	font-size: 1.5rem;
+}
+
 table {
 	width: 100%;
 }
