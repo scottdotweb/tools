@@ -1,3 +1,23 @@
+function updateSeenCount (e) {
+	if (e.target.checked)
+		seenCount++
+	else
+		seenCount--
+
+	setH1()
+}
+
+function setH1 () {
+	const title = document.createElement('span')
+	title.innerHTML = pageTitle
+	const count = document.createElement('span')
+	count.setAttribute('class', 'seenCount')
+	count.innerHTML = ` (seen: ${seenCount})`
+	h1.innerHTML = ''
+	h1.appendChild(title)
+	h1.appendChild(count)
+}
+
 const junk = [
 	'meta', 'link', 'script', 'style', 'iframe',
 ]
@@ -15,12 +35,12 @@ style.setAttribute('href', 'https://scottdotjs.github.io/tools/bookmarklets/styl
 
 document.head.appendChild(style)
 
+let seenCount = 0
+
 const year = document.querySelector('.year button').innerText
 
 const pageTitle = `Metacritic&rsquo;s top 100 films for ${year}`
 
-const h1 = document.createElement('h1')
-h1.innerHTML = pageTitle
 document.head.querySelector('title').innerHTML = pageTitle
 
 const table = document.createElement('table')
@@ -72,6 +92,7 @@ for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer]
 	const checkbox = document.createElement('input')
 	checkbox.setAttribute('type', 'checkbox')
 	checkbox.setAttribute('id', checkboxId)
+	checkbox.addEventListener('change', updateSeenCount)
 
 	const label = document.createElement('label')
 	label.setAttribute('for', checkboxId)
@@ -92,6 +113,10 @@ for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer]
 document.body.innerHTML = ''
 
 const main = document.createElement('main')
+
+const h1 = document.createElement('h1')
+setH1(0)
+
 main.appendChild(h1)
 main.appendChild(table)
 document.body.appendChild(main)
