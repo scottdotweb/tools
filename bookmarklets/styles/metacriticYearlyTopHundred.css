@@ -83,9 +83,6 @@ img {
 
 .seenBox {
 	margin-left: 1rem;
-	border: 0.1rem solid rgb(200, 200, 200);
-	border-radius: 0.75rem;
-	background-color: rgb(240, 240, 240);
 }
 
 input[type=checkbox] {
@@ -100,6 +97,9 @@ input[type=checkbox] {
 
 label {
 	display: flex;
+	border: 0.1rem solid rgb(200, 200, 200);
+	border-radius: 0.75rem;
+	background-color: rgb(240, 240, 240);
 	cursor: pointer;
 	justify-content: center;
 	align-items: center;
