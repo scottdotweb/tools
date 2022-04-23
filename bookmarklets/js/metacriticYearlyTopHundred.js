@@ -17,11 +17,11 @@ document.head.appendChild(style)
 
 const year = document.querySelector('.year button').innerText
 
-const pageTitle = `Metacritic users' top 100 films for ${year}`
+const pageTitle = `Metacritic users&rsquo; top 100 films for ${year}`
 
 const h1 = document.createElement('h1')
-h1.innerText = pageTitle
-document.head.querySelector('title').innerText = pageTitle
+h1.innerHTML = pageTitle
+document.head.querySelector('title').innerHTML = pageTitle
 
 const table = document.createElement('table')
 
@@ -30,7 +30,9 @@ let count = 0
 for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer])')) {
 	count++
 
-	const title = input.querySelector('a.title').innerText
+	let title = input.querySelector('a.title').innerText
+	title = title.replaceAll('\'', '&rsquo;')
+
 	const score = input.querySelector('div.metascore_w').innerText
 	const imgSrc = input.querySelector('.clamp-image-wrap img').src
 
@@ -47,7 +49,7 @@ for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer]
 
 	const titleCell = document.createElement('td')
 	titleCell.setAttribute('class', 'title')
-	titleCell.innerText = title
+	titleCell.innerHTML = title
 
 	const scoreCell = document.createElement('td')
 	const scoreBox = document.createElement('div')
