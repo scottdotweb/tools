@@ -7,8 +7,12 @@
 		font-size: 1rem;
 	}
 
-	.seenCount {
+	.filmsSeen, .yearNavigation {
 		display: none;
+	}
+
+	a {
+		color: rgb(0, 0, 0);
 	}
 }
 
@@ -34,16 +38,41 @@ main {
 	margin-inline: max(12.5vw, 2ch);
 }
 
-.seenCount {
+h1 {
+	margin-bottom: 0;
+}
+
+.filmsSeen {
 	font-size: 1.5rem;
 }
 
 table {
 	width: 100%;
+	margin-bottom: 1rem;
+}
+
+
+.yearNavigation {
+	font-size: 1rem;
+	padding-bottom: 1rem;
+}
+
+.yearNavigation div {
+	display: flex;
+	justify-content: center;
+}
+
+.yearNavigation a {
+	display: inline-block;
+	width: 10ch;
 }
 
 img {
 	height: 3em;
+}
+
+a {
+	text-decoration: none;
 }
 
 .title, .count {

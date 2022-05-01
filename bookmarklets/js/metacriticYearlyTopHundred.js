@@ -1,78 +1,115 @@
+const el = e => document.createElement(e)
+
+function pageTitle () {
+	return `Metacritic&rsquo;s top films for ${year}`
+}
+
 function updateSeenCount (e) {
 	if (e.target.checked)
-		seenCount++
+		filmsSeen++
 	else
-		seenCount--
+		filmsSeen--
 
-	setH1()
+	setHeading()
 }
 
-function setH1 () {
-	const title = document.createElement('span')
-	title.innerHTML = pageTitle
-	const count = document.createElement('span')
-	count.setAttribute('class', 'seenCount')
-	count.innerHTML = ` (seen: ${seenCount})`
+function setHeading () {
+	const titleSpan = el('span')
+	titleSpan.innerHTML = pageTitle()
+	const countSpan = el('span')
+	countSpan.setAttribute('class', 'filmsSeen')
+	countSpan.innerHTML = ` (seen: ${filmsSeen}/${filmCount})`
+
 	h1.innerHTML = ''
-	h1.appendChild(title)
-	h1.appendChild(count)
+	h1.appendChild(titleSpan)
+	h1.appendChild(countSpan)
 }
 
-const junk = [
-	'meta', 'link', 'script', 'style', 'iframe',
-]
+function cleanAndRestylePage () {
+	document.body.innerHTML = ''
 
-for (const junkSelector of junk)
-	document.querySelectorAll(junkSelector).forEach(
-		junkItem => junkItem.remove()
-	)
+	const junk = [
+		'meta', 'link', 'script', 'style', 'iframe',
+	]
 
-document.body.removeAttribute('class')
+	for (const junkSelector of junk)
+		document.querySelectorAll(junkSelector).forEach(
+			junkItem => junkItem.remove()
+		)
 
-const style = document.createElement('link')
-style.setAttribute('rel', 'stylesheet')
-style.setAttribute('href', 'https://scottdotjs.github.io/tools/bookmarklets/styles/metacriticYearlyTopHundred.css')
+	document.body.removeAttribute('class')
 
-document.head.appendChild(style)
+	const style = el('link')
+	style.setAttribute('rel', 'stylesheet')
+	style.setAttribute('href', 'https://scottdotjs.github.io/tools/bookmarklets/styles/metacriticYearlyTopHundred.css')
 
-let seenCount = 0
+	document.head.appendChild(style)
+}
 
 const year = document.querySelector('.year button').innerText
 
-const pageTitle = `Metacritic&rsquo;s top 100 films for ${year}`
+const table = el('table')
 
-document.head.querySelector('title').innerHTML = pageTitle
+let filmCount = 0
+let filmsSeen = 0
 
-const table = document.createElement('table')
+const URL_ROOT = 'https://www.metacritic.com/browse/movies/score/metascore/year/filtered?view=detailed&year_selected='
 
-let count = 0
+const navRow = el('tr')
+const navCell = el('td')
+navCell.setAttribute('colspan', 5)
+navCell.classList.add('yearNavigation')
+
+const navContainer = el('div')
+navCell.appendChild(navContainer)
+
+const prevYear = year - 1
+const nextYear = Number(year) + 1
+
+const prevYearLink = el('a')
+prevYearLink.setAttribute('href', `${URL_ROOT}${prevYear}`)
+prevYearLink.innerHTML = `&larr; ${prevYear}`
+navContainer.appendChild(prevYearLink)
+
+const nextYearLink = el('a')
+nextYearLink.setAttribute('href', `${URL_ROOT}${nextYear}`)
+nextYearLink.innerHTML = `${nextYear} &rarr;`
+navContainer.appendChild(nextYearLink)
+
+navRow.appendChild(navCell)
+table.appendChild(navRow)
 
 for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer])')) {
-	count++
+	filmCount++
 
-	let title = input.querySelector('a.title').innerText
-	title = title.replaceAll('\'', '&rsquo;')
-
-	const score = input.querySelector('div.metascore_w').innerText
 	const imgSrc = input.querySelector('.clamp-image-wrap img').src
 
-	const tr = document.createElement('tr')
+	const tr = el('tr')
 
-	const imageCell = document.createElement('td')
-	const image = document.createElement('img')
+	const imageCell = el('td')
+	const image = el('img')
 	image.setAttribute('src', imgSrc)
 	imageCell.appendChild(image)
 
-	const countCell = document.createElement('td')
+	const countCell = el('td')
 	countCell.setAttribute('class', 'count')
-	countCell.innerText = count
+	countCell.innerText = filmCount
 
-	const titleCell = document.createElement('td')
+	const title = input.querySelector('a.title').innerText.replaceAll('\'', '&rsquo;')
+
+	const titleHref = input.querySelector('a.title').getAttribute('href')
+
+	const titleCell = el('td')
 	titleCell.setAttribute('class', 'title')
-	titleCell.innerHTML = title
+	const titleLink = el('a')
+	titleLink.setAttribute('href', titleHref)
+	titleLink.innerHTML = title
+	titleCell.appendChild(titleLink)
 
-	const scoreCell = document.createElement('td')
-	const scoreBox = document.createElement('div')
+	const scoreCell = el('td')
+	const scoreBox = el('div')
+
+	const score = input.querySelector('div.metascore_w').innerText
 	scoreBox.innerText = score
 
 	scoreBox.classList.add('score')
@@ -84,17 +121,17 @@ for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer]
 	scoreBox.classList.add(scoreGroup)
 	scoreCell.appendChild(scoreBox)
 
-	const seenCell = document.createElement('td')
-	const seenBox = document.createElement('div')
+	const seenCell = el('td')
+	const seenBox = el('div')
 	seenBox.setAttribute('class', 'seenBox')
 
-	const checkboxId = `film${count}`
-	const checkbox = document.createElement('input')
+	const checkboxId = `film${filmCount}`
+	const checkbox = el('input')
 	checkbox.setAttribute('type', 'checkbox')
 	checkbox.setAttribute('id', checkboxId)
 	checkbox.addEventListener('change', updateSeenCount)
 
-	const label = document.createElement('label')
+	const label = el('label')
 	label.setAttribute('for', checkboxId)
 
 	seenCell.appendChild(seenBox)
@@ -110,13 +147,25 @@ for (const input of document.querySelectorAll('.clamp-list tr:not([class=spacer]
 	table.appendChild(tr)
 }
 
-document.body.innerHTML = ''
+cleanAndRestylePage()
 
-const main = document.createElement('main')
+document.head.querySelector('title').innerHTML = pageTitle()
 
-const h1 = document.createElement('h1')
-setH1(0)
+const main = el('main')
+const h1 = el('h1')
+
+setHeading()
 
 main.appendChild(h1)
 main.appendChild(table)
 document.body.appendChild(main)
+
+// setTempStyle()
+
+function setTempStyle () {
+	const tempStyle = el('style')
+	tempStyle.innerHTML =
+	`
+`
+	document.head.appendChild(tempStyle)
+}
