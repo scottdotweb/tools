@@ -41,7 +41,7 @@ function cleanAndRestylePage () {
 
 	const style = el('link')
 	style.setAttribute('rel', 'stylesheet')
-	style.setAttribute('href', 'https://scottdotjs.github.io/tools/bookmarklets/styles/metacriticYearlyTopHundred.css')
+	style.setAttribute('href', 'https://scottdotjs.github.io/tools/bookmarklets/styles/metacriticTopFilms.css')
 
 	document.head.appendChild(style)
 }
