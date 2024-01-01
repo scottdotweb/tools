@@ -1,14 +1,15 @@
 # Scott's Tools
 
-Small web-based utilities for fixing data in one way or another.
+Small utilities, mostly for fixing data in one way or another.
 
+* Bookmarklets: open `bookmarklets/index.html` in your browser
+* [Minecraft OneDrive Linker](minecraft-onedrive-linker/README.md) ![New!](assets/new.gif)
 * [Renaming Script Generator](renaming-script-generator/README.md)
-* [Strip URL Parameters](strip-url-params/README.md) ![New!](assets/new.gif)
 * [VLC Playlist Fixer](vlc-playlist-fixer/README.md)
 
 ## Author and license
 
-Copyright 2022 [Scott Martin](https://github.com/scottdotjs).
+Copyright [Scott Martin](https://github.com/scottdotjs).
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
