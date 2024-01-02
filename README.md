@@ -3,7 +3,7 @@
 Small utilities, mostly for fixing data in one way or another.
 
 * Bookmarklets: open `bookmarklets/index.html` in your browser
-* [Minecraft OneDrive Linker](minecraft-onedrive-linker/README.md) ![New!](assets/new.gif)
+* [Minecraft OneDrive Linker](minecraft-onedrive/README.md) ![New!](assets/new.gif)
 * [Renaming Script Generator](renaming-script-generator/README.md)
 * [VLC Playlist Fixer](vlc-playlist-fixer/README.md)
 

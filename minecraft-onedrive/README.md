@@ -9,16 +9,19 @@ Before doing anything: MAKE A BACKUP OF YOUR SAVES FOLDER. On Windows it's in
 `.minecraft` which is in the `%AppData%` folder - type that into the Explorer
 address bar and it will expand to the full path.
 
+On all computers you want to keep Minecraft synchronized between, download the
+`SavesLinker.bat` script from this repository.
+
 On the computer that has the Minecraft installation you want to synchronize:
 
 1. Move your Minecraft saves folder into wherever you want to keep it in your OneDrive folder.
-2. Run the script by double-clicking it and answer the prompts.
+2. Run `SavesLinker.bat` by double-clicking it and answer the prompts.
 3. Wait for the folder to finish uploading to OneDrive.
 
 On the other computer(s):
 
 1. Move any existing Minecraft saves folder out of `%AppData%\.minecraft`.
-2. Run the script by double-clicking it and answer the prompts.
+2. Run `SavesLinker.bat` by double-clicking it and answer the prompts.
 3. Wait for the folder to finish downloading from OneDrive.
 
 Go mine and craft!
