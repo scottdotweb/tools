@@ -13,7 +13,7 @@
 	"dependencies": {
 		"chalk": "^5.0.1",
 		"cheerio": "^1.0.0-rc.10",
-		"node-fetch": "^3.2.3"
+		"node-fetch": "^3.2.10"
 	},
 	"scripts": {
 		"dev": "http-server -S -C .ssl/cert.pem -K .ssl/key.pem"
