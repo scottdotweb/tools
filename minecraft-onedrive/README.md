@@ -1,7 +1,29 @@
-# Minecraft OneDrive Linker
+# Minecraft OneDrive sync scripts
 
-This Windows batch script will let you keep your Minecraft saved games folder
-on OneDrive and thus synchronized between different computers.
+This project aims to make it possible to synchronize your Minecraft games and
+related data between computers using OneDrive.
+
+This is a workaround for OneDrive not allowing you to add any folder path on
+your system to it. Because of that, if you want to use OneDrive to sync Minecraft
+we have to move some of the Minecraft folders into OneDrive's folder, then
+create links to those folders from where they were originally, so that the
+game can keep using them. This project will do the work of that for you.
+
+At the moment it's separate scripts, but will eventually be a single script
+which asks you questions about what you'd like to sync and works accordingly.
+
+# General notes before proceeding
+
+⚠️ This software comes with no guarantees or warranty of usefulness
+whatsoever and you run it at your own risk. Make regular backups!
+
+ℹ️ OneDrive's Windows app can be flaky and I've noticed the game lagging
+sometimes while it scans file changes. It's probably best to pause OneDrive
+while you're playing. But don't forget to turn it back on afterwards.
+
+😱 Don't play Minecraft on one machine until it's finished syncing from the
+other machine first. And certainly don't play it on two machines at the same
+time after using this tool.
 
 # How to use it
 
@@ -38,10 +60,5 @@ sync up and then down again before starting to play.
 
 Delete the `saves` directory link from the `.minecraft` folder and move the
 real folder back there. Obviously make sure OneDrive has fully synchronized
-before you do that.
-
-# DISCLAIMER
-
-This is a very hacky workaround for OneDrive not letting you add arbitrary
-file paths. This software comes with no guarantees or warranty of usefulness
-whatsoever and you run it at your own risk. Make regular backups!
+before you do that. This applies to any other directory links set up by the
+scripts in this project as well.
