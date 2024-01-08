@@ -24,51 +24,93 @@ function Exit-Prompt {
 	exit
 }
 
-$ScreenshotsLinkPath = "$env:APPDATA\.minecraft\screenshots"
+function Exit-If {
+	Param($TestFunction, $ExitCondition)
 
-If (Test-Path $ScreenshotsLinkPath) {
-	if ((Get-Item -Path $ScreenshotsLinkPath -Force).LinkType -eq "Junction") {
-		$LinkTarget = (Get-Item $ScreenshotsLinkPath).Target
+	$TestResult, $ErrorMessage = & $TestFunction
 
-		Write-Host "There's already a link at $ScreenshotsLinkPath and it points to $LinkTarget. Do you need to use this script?"
+	$ExitConditionMet = $false
+
+	if ($ExitCondition -and $TestResult) {
+		$ExitConditionMet = $true
+	}
+
+	if ((-not $ExitCondition) -and (-not $TestResult)) {
+		$ExitConditionMet = $true
+	}
+
+	if ($ExitConditionMet) {
+		Write-Host $ErrorMessage
 		Exit-Prompt
 	}
 
-	Write-Host "There's already a folder at $ScreenshotsLinkPath, you need to move it to your OneDrive folder before running this script."
-	Exit-Prompt
 }
 
-$ScreenshotsContainerPath = ''
+function Path-Exists {
+	Param($TestPath)
+
+	$result = Test-Path $TestPath
+
+	return ,$result, "The path $TestPath doesn't exist, please check."
+}
+
+function Is-Container {
+	Param($TestPath)
+
+	$result = Test-Path -Path $TestPath -PathType container
+
+	return ,$result,"The path $TestPath isn't a directory."
+}
+
+function Directory-Exists {
+	Param($TestPath)
+
+	$TestResult = $false
+
+	if (Test-Path $TestPath) {
+		if (Is-Container $TestPath) {
+			if (-not ((Get-Item -Path $TestPath -Force).LinkType -eq "Junction")) {
+				$TestResult = $true
+			}
+		}
+	}
+
+	return ,$TestResult,"There's already a folder at $TestPath, you need to move it to your OneDrive folder before running this script."
+}
+
+function Link-Exists {
+	Param ($LinkPath)
+
+	$TestResult = $false
+	$ErrorMessage = ''
+
+	if (Test-Path $LinkPath) {
+		if ((Get-Item -Path $LinkPath -Force).LinkType -eq "Junction") {
+			$LinkTarget = (Get-Item $LinkPath).Target
+
+			$TestResult = $true
+			$ErrorMessage = "There's already a link at $LinkPath and it points to $LinkTarget. Do you need to use this script?"
+		}
+	}
+
+	return ,$TestResult,$ErrorMessage
+}
 
 function Get-Screenshots-Container-Path {
 	$EnteredPath = Read-Host -Prompt "Enter the path to the folder within your OneDrive folder where you'll keep your screenshots folder, not including the path to OneDrive itself (eg. Games\Minecraft)"
 
-	If ($EnteredPath -eq '') {
+	if ($EnteredPath -eq '') {
 		$EnteredPath = Get-Screenshots-Container-Path
 	}
 
 	return $EnteredPath
 }
 
-$ScreenshotsContainerPath = Get-Screenshots-Container-Path
-
-$ScreenshotsFullPath = "$env:USERPROFILE\OneDrive\$ScreenshotsContainerPath\screenshots"
-
-If (-Not (Test-Path $ScreenshotsFullPath)) {
-	Write-Host "The path $ScreenshotsFullPath doesn't exist, please check."
-	Exit-Prompt
-}
-
-If (-Not (Test-Path -Path $ScreenshotsFullPath -PathType container)) {
-	Write-Host "The path $ScreenshotsFullPath isn't a directory."
-	Exit-Prompt
-}
-
-function make-junction {
-	Param($link, $target)
+function Make-Junction {
+	Param($LinkPath, $LinkTarget)
 
 	try {
-	    New-Item -Path $link -ItemType Junction -Value $target | Out-Null
+	    New-Item -Path $LinkPath -ItemType Junction -Value $LinkTarget | Out-Null
 	}
 
 	catch {
@@ -78,7 +120,21 @@ function make-junction {
 	}
 }
 
-make-junction $ScreenshotsLinkPath $ScreenshotsFullPath
+# ---------------------------------------------------------------------------
+
+$ScreenshotsLinkPath = "$env:APPDATA\.minecraft\screenshots"
+$ScreenshotsContainerPath = ''
+
+Exit-If { Directory-Exists $ScreenshotsLinkPath } $true
+Exit-If { Link-Exists $ScreenshotsLinkPath } $true
+
+$ScreenshotsFullPath = "$env:USERPROFILE\OneDrive\$(Get-Screenshots-Container-Path)\screenshots"
+
+Exit-If { Path-Exists $ScreenshotsFullPath } $false
+
+Exit-If { Is-Container $ScreenshotsFullPath } $false
+
+Make-Junction $ScreenshotsLinkPath $ScreenshotsFullPath
 
 Write-Host "Done."
 
