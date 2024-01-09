@@ -1,7 +1,13 @@
 @echo off
 Rem Workaround for .ps1 files not being clickable to run
 PowerShell -NoExit -Command "Get-Content '%~dpnx0' | Select-Object -Skip 4 | Out-String | Invoke-Expression"
-goto :eof
+exit
+
+$MinecraftDirectory = "$env:APPDATA\.minecraft"
+$OneDriveDirectory = "$env:USERPROFILE\OneDrive"
+
+$MadeLinks = $false
+$ExitMessage = "Okay, bye!"
 
 <#
 
@@ -96,11 +102,13 @@ function Link-Exists {
 	return ,$TestResult,$ErrorMessage
 }
 
-function Get-Screenshots-Container-Path {
-	$EnteredPath = Read-Host -Prompt "Enter the path to the folder within your OneDrive folder where you'll keep your screenshots folder, not including the path to OneDrive itself (eg. Games\Minecraft)"
+function Get-Path {
+	Param($PathQueryPrompt)
+
+	$EnteredPath = Read-Host -Prompt $PathQueryPrompt
 
 	if ($EnteredPath -eq '') {
-		$EnteredPath = Get-Screenshots-Container-Path
+		$EnteredPath = Get-Path $PathQueryPrompt
 	}
 
 	return $EnteredPath
@@ -120,22 +128,59 @@ function Make-Junction {
 	}
 }
 
+function Get-Path-Prompt {
+	Param ($DirectoryType)
+
+	return "Enter the path to the $DirectoryType folder within your OneDrive folder, not including the path to OneDrive itself (eg. Games\Minecraft\$DirectoryType)"
+}
+
 # ---------------------------------------------------------------------------
 
-$ScreenshotsLinkPath = "$env:APPDATA\.minecraft\screenshots"
-$ScreenshotsContainerPath = ''
+function Make-Link {
+	Param($LinkType)
 
-Exit-If { Directory-Exists $ScreenshotsLinkPath } $true
-Exit-If { Link-Exists $ScreenshotsLinkPath } $true
+	$LinkPath = "$MinecraftDirectory\$LinkType"
 
-$ScreenshotsFullPath = "$env:USERPROFILE\OneDrive\$(Get-Screenshots-Container-Path)\screenshots"
+	Exit-If { Directory-Exists $LinkPath } $true
+	Exit-If { Link-Exists $LinkPath } $true
 
-Exit-If { Path-Exists $ScreenshotsFullPath } $false
+	$LocalPath = Get-Path $(Get-Path-Prompt $LinkType)
+	$FullPath = "$OneDriveDirectory\$LocalPath"
 
-Exit-If { Is-Container $ScreenshotsFullPath } $false
+	Exit-If { Path-Exists $FullPath } $false
+	Exit-If { Is-Container $FullPath } $false
 
-Make-Junction $ScreenshotsLinkPath $ScreenshotsFullPath
+	Make-Junction $LinkPath $FullPath
+}
 
-Write-Host "Done."
+function Prompt-Link-Type {
+	Param($LinkType)
 
+	Write-Host "Do you want to link your $LinkType folder? [y/n]"
+
+	$DoLink = (Read-Host).ToLower()
+
+	switch ($DoLink) {
+		"y" {
+			Make-Link $LinkType
+			$global:MadeLinks = $true
+		}
+
+		"n" { return }
+
+		default {
+			Write-Host "Please make a choice."
+			Prompt-Link-Type $LinkType
+		}
+	}
+}
+
+Prompt-Link-Type "saves"
+Prompt-Link-Type "screenshots"
+
+if ($MadeLinks) {
+	$ExitMessage = "Done. IMPORTANT: Make sure the folders in your OneDrive are set to 'always keep on this device'."
+}
+
+Write-Host $ExitMessage
 Exit-Prompt
