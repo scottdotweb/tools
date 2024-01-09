@@ -1,4 +1,4 @@
-# Minecraft OneDrive sync scripts
+# Minecraft OneDrive sync helper
 
 This project aims to make it possible to synchronize your Minecraft games and
 related data between computers using OneDrive.
@@ -8,9 +8,6 @@ your system to it. Because of that, if you want to use OneDrive to sync Minecraf
 we have to move some of the Minecraft folders into OneDrive's folder, then
 create links to those folders from where they were originally, so that the
 game can keep using them. This project will do the work of that for you.
-
-At the moment it's separate scripts, but will eventually be a single script
-which asks you questions about what you'd like to sync and works accordingly.
 
 # General notes before proceeding
 
@@ -32,25 +29,25 @@ Before doing anything: MAKE A BACKUP OF YOUR SAVES FOLDER. On Windows it's in
 address bar and it will expand to the full path.
 
 On all computers you want to keep Minecraft synchronized between, download the
-`SavesLinker.bat` script from this repository.
+`Linker.cmd` script from this repository.
 
 On the computer that has the Minecraft installation you want to synchronize:
 
-1. Move your Minecraft saves folder into wherever you want to keep it in your OneDrive folder.
-2. Run `SavesLinker.bat` by double-clicking it and answer the prompts.
+1. Move your Minecraft saves folder and/or screenshots folder into wherever you want to keep it/them in your OneDrive folder.
+2. Run `Linker.cmd` by double-clicking it and answer the prompts.
 3. Wait for the folder to finish uploading to OneDrive.
 
 On the other computer(s):
 
-1. Move any existing Minecraft saves folder out of `%AppData%\.minecraft`.
-2. Run `SavesLinker.bat` by double-clicking it and answer the prompts.
+1. Move any existing Minecraft saves folder and/or screenshots folder out of `%AppData%\.minecraft`.
+2. Run `Linker.cmd` by double-clicking it and answer the prompts.
 3. Wait for the folder to finish downloading from OneDrive.
 
 Go mine and craft!
 
 # Important note
 
-The script will tell you how to get OneDrive to always keep a local copy of
+The script will remind you to get OneDrive to always keep a local copy of
 the folder (exempt it from Files On-Demand). If you don't there's a risk of
 the game getting confused looking for files that aren't technically there.
 Also, when switching between machines, YOU MUST wait for the game files to
@@ -58,7 +55,6 @@ sync up and then down again before starting to play.
 
 # Putting things back how they were
 
-Delete the `saves` directory link from the `.minecraft` folder and move the
-real folder back there. Obviously make sure OneDrive has fully synchronized
-before you do that. This applies to any other directory links set up by the
-scripts in this project as well.
+Delete the `saves` and/or `screenshots` directory link[s] from the
+`.minecraft` folder and move the real folder[s] back there. Obviously make
+sure OneDrive has fully synchronized before you do that.
