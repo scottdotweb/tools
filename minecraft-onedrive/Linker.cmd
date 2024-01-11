@@ -181,7 +181,7 @@ Prompt-Link-Type "XaeroWaypoints" "n"
 Prompt-Link-Type "XaeroWorldMap" "n"
 
 if ($MadeLinks) {
-	$ExitMessage = "Done. IMPORTANT: Make sure the folders in your OneDrive are set to 'always keep on this device'."
+	$ExitMessage = "Done. IMPORTANT: Make sure the Minecraft folder in your OneDrive with these folders is set to 'always keep on this device'."
 }
 
 Write-Host $ExitMessage
