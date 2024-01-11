@@ -134,8 +134,6 @@ function Get-Path-Prompt {
 	return "Enter the path to the $DirectoryType folder within your OneDrive folder, not including the path to OneDrive itself (eg. Games\Minecraft\$DirectoryType)"
 }
 
-# ---------------------------------------------------------------------------
-
 function Make-Link {
 	Param($LinkType)
 
@@ -154,11 +152,13 @@ function Make-Link {
 }
 
 function Prompt-Link-Type {
-	Param($LinkType)
+	Param($LinkType, $DefaultChoice)
 
-	Write-Host "Do you want to link your $LinkType folder? [y/n]"
+	Write-Host "Do you want to link your $LinkType folder? [y/n] [default: $DefaultChoice]"
 
 	$DoLink = (Read-Host).ToLower()
+
+	if ($DoLink -eq "") { $DoLink = $DefaultChoice }
 
 	switch ($DoLink) {
 		"y" {
@@ -167,16 +167,18 @@ function Prompt-Link-Type {
 		}
 
 		"n" { return }
-
-		default {
-			Write-Host "Please make a choice."
-			Prompt-Link-Type $LinkType
-		}
 	}
 }
 
-Prompt-Link-Type "saves"
-Prompt-Link-Type "screenshots"
+# ----------------------------------------------------------------------------
+
+# TODO: hash(?) of folder names with labels for nicer phrasing
+
+Prompt-Link-Type "mods" "y"
+Prompt-Link-Type "saves" "y"
+Prompt-Link-Type "screenshots" "y"
+Prompt-Link-Type "XaeroWaypoints" "n"
+Prompt-Link-Type "XaeroWorldMap" "n"
 
 if ($MadeLinks) {
 	$ExitMessage = "Done. IMPORTANT: Make sure the folders in your OneDrive are set to 'always keep on this device'."
