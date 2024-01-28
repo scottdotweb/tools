@@ -81,7 +81,7 @@ function Directory-Exists {
 		}
 	}
 
-	return ,$TestResult,"There's already a folder at $TestPath, you need to move it to your OneDrive folder before running this script."
+	return ,$TestResult,"There's already a folder at: $TestPath`nYou need to move it to your OneDrive folder before running this script."
 }
 
 function Link-Exists {
@@ -95,11 +95,25 @@ function Link-Exists {
 			$LinkTarget = (Get-Item $LinkPath).Target
 
 			$TestResult = $true
-			$ErrorMessage = "There's already a link at $LinkPath and it points to $LinkTarget. Do you need to use this script?"
+			$ErrorMessage = "There's already a link at: $LinkPath`nIt points to: $LinkTarget`nDo you need to use this script?"
 		}
 	}
 
 	return ,$TestResult,$ErrorMessage
+}
+
+function Confirm-Path {
+	Param($EnteredPath)
+
+	$Confirmed = Read-Host -Prompt "You entered:`n$EnteredPath`nIs this correct? [y/n]"
+
+	if ($Confirmed -eq 'y') {
+		return $true
+	} elseif ($Confirmed -eq 'n') {
+		return $false
+	} else {
+		$Confirmed = Confirm-Path $EnteredPath
+	}
 }
 
 function Get-Path {
@@ -111,14 +125,18 @@ function Get-Path {
 		$EnteredPath = Get-Path $PathQueryPrompt
 	}
 
-	return $EnteredPath
+	if (Confirm-Path $EnteredPath) {
+		return $EnteredPath
+	} else {
+		$EnteredPath = Get-Path $PathQueryPrompt
+	}
 }
 
 function Make-Junction {
 	Param($LinkPath, $LinkTarget)
 
 	try {
-	    New-Item -Path $LinkPath -ItemType Junction -Value $LinkTarget | Out-Null
+		New-Item -Path $LinkPath -ItemType Junction -Value $LinkTarget | Out-Null
 	}
 
 	catch {
